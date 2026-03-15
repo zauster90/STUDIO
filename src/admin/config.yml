@@ -2,8 +2,7 @@ backend:
   name: github
   repo: zauster90/STUDIO
   branch: main
-  auth_type: pkce
-  app_id: Ov23liXxHDBRzOUqzCOZ
+  base_url: https://sveltia-cms-auth.zauster-art.workers.dev
 
 media_folder: "src/images"
 public_folder: "/images"
