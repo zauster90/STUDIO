@@ -3,6 +3,7 @@ backend:
   repo: zauster90/STUDIO
   branch: main
 
+# No local media — all assets served from R2: media.zach-miller-studio.com
 media_folder: "src/images"
 public_folder: "/images"
 
@@ -17,7 +18,7 @@ collections:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Year", name: "year", widget: "number", value_type: "int" }
       - { label: "Medium", name: "medium", widget: "string" }
-      - { label: "Dimensions", name: "dimensions", widget: "string" }
+      - { label: "Dimensions", name: "dimensions", widget: "string", required: false }
       - label: "Category"
         name: "category"
         widget: "select"
@@ -25,8 +26,8 @@ collections:
           - { label: "Painting", value: "painting" }
           - { label: "Drawing & Print", value: "drawing" }
           - { label: "New Media", value: "new-media" }
-      - { label: "Image", name: "image", widget: "image" }
-      - { label: "Video File", name: "video_file", widget: "file", required: false, hint: "Upload a short video clip (1-2 min max)" }
+      - { label: "Image URL", name: "image", widget: "string", hint: "Paste the full R2 URL from media.zach-miller-studio.com" }
+      - { label: "Video File URL", name: "video_file", widget: "string", required: false, hint: "Paste the full R2 video URL (for self-hosted clips)" }
       - { label: "Video Embed URL", name: "video_embed", widget: "string", required: false, hint: "Paste a Vimeo or YouTube embed URL" }
       - { label: "Featured", name: "featured", widget: "boolean", default: false }
       - { label: "Statement", name: "body", widget: "markdown", required: false }
