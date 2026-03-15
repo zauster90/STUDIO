@@ -1,0 +1,43 @@
+---
+layout: layouts/base.njk
+title: ""
+activeNav: work
+---
+
+<div class="gallery-header" data-reveal>
+  <h2 class="gallery-title">Featured Work</h2>
+</div>
+
+{% set featuredWorks = collections.works | featured | limit(1) %}
+{% for work in featuredWorks %}
+<div class="featured-work" data-reveal>
+  <div class="featured-image-wrap">
+    <a href="{{ work.url }}">
+      <img src="{{ work.data.image }}"
+           alt="{{ work.data.title }}, {{ work.data.year }} — {{ work.data.medium }}, {{ work.data.dimensions }}"
+           width="1200" height="1200"
+           loading="eager">
+    </a>
+  </div>
+  <div class="featured-meta">
+    <div class="featured-meta-item">
+      <span class="featured-meta-key">Featured</span>
+      <span class="featured-meta-val"><em>{{ work.data.title }}</em>, {{ work.data.year }}</span>
+    </div>
+    <div class="featured-meta-item">
+      <span class="featured-meta-key">Medium</span>
+      <span class="featured-meta-val">{{ work.data.medium }}</span>
+    </div>
+    <div class="featured-meta-item">
+      <span class="featured-meta-key">Dimensions</span>
+      <span class="featured-meta-val">{{ work.data.dimensions }}</span>
+    </div>
+  </div>
+</div>
+{% endfor %}
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+  <img src="" alt="">
+</div>
+<script src="/assets/js/lightbox.js" defer></script>

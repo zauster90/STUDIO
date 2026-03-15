@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zach Miller Studio — Admin</title>
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <script>
+    CMS.registerEditorComponent({
+      id: "video-embed",
+      label: "Video Embed",
+      fields: [
+        { name: "url", label: "Video URL", widget: "string", hint: "Paste a Vimeo or YouTube URL" },
+        { name: "title", label: "Title", widget: "string", required: false }
+      ],
+      pattern: /^<div class="video-embed">\s*<iframe src="(.*?)".*?><\/iframe>\s*<\/div>$/ms,
+      fromBlock: function(match) {
+        return { url: match[1] };
+      },
+      toBlock: function(obj) {
+        return '<div class="video-embed"><iframe src="' + obj.url + '" width="100%" height="450" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="' + (obj.title || '') + '"></iframe></div>';
+      },
+      toPreview: function(obj) {
+        return '<div class="video-embed"><iframe src="' + obj.url + '" width="100%" height="450" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>';
+      }
+    });
+  </script>
+</head>
+<body>
+</body>
+</html>

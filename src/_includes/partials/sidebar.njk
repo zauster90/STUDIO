@@ -1,0 +1,22 @@
+<aside class="sidebar">
+  <div>
+    <a class="site-name" href="/">ZACH MILLER</a>
+    <div class="site-tagline">STUDIO</div>
+  </div>
+  <nav aria-label="Site navigation">
+    <a class="nav-item{% if activeNav == 'work' %} active{% endif %}" href="/work/">Work</a>
+    <div class="nav-submenu">
+      <a class="nav-subitem" data-filter="painting" href="/work/#painting">Paint</a>
+      <a class="nav-subitem" data-filter="drawing" href="/work/#drawing">Draw &amp; Print</a>
+      <a class="nav-subitem" data-filter="new-media" href="/work/#new-media">New Media</a>
+    </div>
+    <a class="nav-item{% if activeNav == 'writing' %} active{% endif %}" href="/writing/">Reflections</a>
+    <a class="nav-item{% if activeNav == 'about' %} active{% endif %}" href="/about/">About</a>
+    <a class="nav-item{% if activeNav == 'contact' %} active{% endif %}" href="/contact/">Contact</a>
+  </nav>
+  <div class="sidebar-footer">
+    &copy; 2025 Zach Miller<br>
+    Oklahoma City, OK<br>
+    <a class="sidebar-insta" href="https://instagram.com/zauster" target="_blank" rel="noopener">Insta: @zauster</a>
+  </div>
+</aside>

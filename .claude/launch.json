@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "dev",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["node_modules/@11ty/eleventy/cmd.cjs", "--serve", "--port=4403"],
+      "port": 4403
+    }
+  ]
+}

@@ -1,0 +1,202 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   Theme A: Gallery White
+   High-contrast, stark, contemporary gallery aesthetic.
+   Inspired by Gagosian, Pace, David Zwirner.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Token overrides ── */
+:root {
+  --bg:          #ffffff;
+  --bg-warm:     #f8f8f8;
+  --ink:         #000000;
+  --ink-mid:     #444444;
+  --ink-dim:     #888888;
+  --rule:        #e5e5e5;
+  --rule-light:  #f0f0f0;
+  --accent:      #666666;
+  --accent-warm: #999999;
+
+  /* Increased spacing — architectural breathing room */
+  --content-pad-top:    5rem;
+  --content-pad-right:  6rem;
+  --content-pad-bottom: 8rem;
+  --content-pad-left:   4rem;
+}
+
+/* ── Body ── */
+body {
+  background: #ffffff;
+  letter-spacing: 0.005em;
+}
+
+/* ── Selection ── */
+::selection {
+  background: #000000;
+  color: #ffffff;
+}
+
+/* ── Sidebar — more spacious ── */
+.sidebar {
+  padding: 4.5rem 2.5rem 4.5rem 3.5rem;
+}
+
+.site-name {
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  font-size: 1.3rem;
+}
+
+.site-tagline {
+  color: var(--ink-dim);
+  letter-spacing: 0.22em;
+  font-size: 0.72rem;
+  margin-bottom: 3.5rem;
+}
+
+/* ── Navigation — cleaner ── */
+.nav-item {
+  font-weight: 500;
+  font-size: 0.9rem;
+  padding: 0.45rem 0;
+  color: var(--ink-dim);
+}
+.nav-item:hover { color: #000000; }
+.nav-item.active { color: #000000; }
+
+.nav-subitem {
+  font-weight: 400;
+  color: var(--ink-dim);
+}
+
+/* ── Sidebar footer — smaller, more recessed ── */
+.sidebar-footer {
+  font-size: 0.52rem;
+  letter-spacing: 0.14em;
+  color: #aaaaaa;
+}
+.sidebar-footer a { color: #aaaaaa; }
+.sidebar-footer a:hover { color: var(--ink-dim); }
+
+/* ── Featured work — more breathing room ── */
+.featured-work {
+  gap: 2rem;
+  margin-top: 8rem;
+}
+
+.featured-meta {
+  gap: 0.3rem 3.5rem;
+  padding-top: 1.2rem;
+}
+
+.featured-image-wrap img {
+  filter: none;
+}
+.featured-image-wrap img:hover {
+  filter: none;
+}
+
+/* ── Gallery grid — wider gaps ── */
+.gallery-header {
+  margin-top: 8rem;
+  margin-bottom: 3rem;
+}
+
+.gallery-title {
+  font-weight: 800;
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+}
+
+.gallery-grid {
+  gap: 10px;
+}
+
+.gallery-item {
+  background: #f8f8f8;
+}
+
+.gallery-item img {
+  filter: none;
+}
+.gallery-item:hover img {
+  filter: none;
+  transform: scale(1.02);
+}
+
+/* Gallery overlay — minimal */
+.gallery-item .gallery-overlay {
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.55) 0%, transparent 45%);
+}
+
+.gallery-overlay-title {
+  font-weight: 400;
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
+}
+
+/* ── Work detail — spacious meta ── */
+.work-meta {
+  gap: 1rem 3rem;
+  padding-top: 1rem;
+  padding-bottom: 1.5rem;
+}
+
+/* ── Blog — cleaner lines ── */
+.post-list {
+  margin-top: 8rem;
+}
+
+.post-entry {
+  padding: 2rem 0;
+}
+
+.post-title {
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+/* ── Lightbox ── */
+.lightbox {
+  background: rgba(255, 255, 255, 0.96);
+}
+
+/* ── Gradient field — nearly invisible ── */
+.gradient-field {
+  opacity: 0.3;
+}
+
+/* ── Section dividers ── */
+.section-divider {
+  margin: 5rem 0 4rem;
+}
+
+/* ── Contact ── */
+.btn {
+  border-color: #000000;
+  color: #000000;
+}
+.btn:hover {
+  background: #000000;
+  color: #ffffff;
+}
+
+/* ── Responsive overrides ── */
+@media (max-width: 960px) {
+  :root {
+    --content-pad-right: 4rem;
+    --content-pad-left:  3rem;
+  }
+  .gallery-grid { gap: 8px; }
+}
+
+@media (max-width: 768px) {
+  .featured-work,
+  .gallery-header,
+  .post-list {
+    margin-top: 4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery-grid { gap: 6px; }
+}

@@ -1,0 +1,40 @@
+---
+layout: layouts/base.njk
+title: Contact
+activeNav: contact
+---
+
+<div class="contact-content" data-reveal>
+  <p class="contact-intro">For inquiries about available work, exhibitions, or studio visits, please use the form below or reach out directly.</p>
+
+  <form action="#" method="POST">
+    <div class="form-group">
+      <label class="form-label" for="name">Name</label>
+      <input class="form-input" type="text" id="name" name="name" required>
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="email">Email</label>
+      <input class="form-input" type="email" id="email" name="email" required>
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="subject">Subject</label>
+      <input class="form-input" type="text" id="subject" name="subject">
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="message">Message</label>
+      <textarea class="form-textarea" id="message" name="message" rows="6" required></textarea>
+    </div>
+    <button class="btn" type="submit">Send Inquiry</button>
+  </form>
+
+  <div class="contact-detail">
+    <div class="contact-row">
+      <span class="contact-row-key">Location</span>
+      <span class="contact-row-val">Oklahoma City, OK</span>
+    </div>
+    <div class="contact-row">
+      <span class="contact-row-key">Instagram</span>
+      <span class="contact-row-val"><a href="https://instagram.com/zauster" target="_blank" rel="noopener">@zauster</a></span>
+    </div>
+  </div>
+</div>

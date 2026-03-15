@@ -1,0 +1,5 @@
+{
+  "layout": "layouts/work-detail.njk",
+  "tags": "work",
+  "permalink": "/work/{{ title | slugify }}/index.html"
+}

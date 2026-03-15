@@ -1,0 +1,44 @@
+backend:
+  name: github
+  repo: zauster90/STUDIO
+  branch: main
+
+media_folder: "src/images"
+public_folder: "/images"
+
+collections:
+  - name: "works"
+    label: "Works"
+    folder: "src/content/works"
+    create: true
+    slug: "{{slug}}"
+    sortable_fields: ["title", "year", "category"]
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Year", name: "year", widget: "number", value_type: "int" }
+      - { label: "Medium", name: "medium", widget: "string" }
+      - { label: "Dimensions", name: "dimensions", widget: "string" }
+      - label: "Category"
+        name: "category"
+        widget: "select"
+        options:
+          - { label: "Painting", value: "painting" }
+          - { label: "Drawing & Print", value: "drawing" }
+          - { label: "New Media", value: "new-media" }
+      - { label: "Image", name: "image", widget: "image" }
+      - { label: "Video File", name: "video_file", widget: "file", required: false, hint: "Upload a short video clip (1-2 min max)" }
+      - { label: "Video Embed URL", name: "video_embed", widget: "string", required: false, hint: "Paste a Vimeo or YouTube embed URL" }
+      - { label: "Featured", name: "featured", widget: "boolean", default: false }
+      - { label: "Statement", name: "body", widget: "markdown", required: false }
+
+  - name: "posts"
+    label: "Blog Posts"
+    folder: "src/content/posts"
+    create: true
+    slug: "{{slug}}"
+    sortable_fields: ["title", "date"]
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD" }
+      - { label: "Tags", name: "tags", widget: "list", default: [] }
+      - { label: "Body", name: "body", widget: "markdown" }

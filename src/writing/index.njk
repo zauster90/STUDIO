@@ -1,0 +1,31 @@
+---
+layout: layouts/base.njk
+title: Reflections
+activeNav: writing
+---
+
+<div class="gallery-header" data-reveal>
+  <h2 class="gallery-title">Reflections</h2>
+  <span class="gallery-count">{{ collections.posts.length }} posts</span>
+</div>
+
+<div class="post-list" data-reveal>
+  {% for post in collections.posts %}
+  <a href="{{ post.url }}" class="post-entry">
+    <span class="post-date">{{ post.data.date | date("%B %Y") }}</span>
+    <div>
+      <div class="post-title">{{ post.data.title }}</div>
+      <div class="post-excerpt">{{ post.content | striptags | truncate(150) }}</div>
+      {% if post.data.tags %}
+      <div class="post-tags">
+        {% for tag in post.data.tags %}
+        {% if tag != "post" %}
+        <span class="post-tag">{{ tag }}</span>
+        {% endif %}
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+  </a>
+  {% endfor %}
+</div>

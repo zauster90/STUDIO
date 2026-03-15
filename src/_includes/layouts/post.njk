@@ -1,0 +1,16 @@
+---
+layout: layouts/base.njk
+activeNav: writing
+---
+
+<a class="back-link" href="/writing/">All Writing</a>
+
+<article>
+  <div class="post-header" data-reveal>
+    <span class="post-date">{{ date | date("%B %Y") }}</span>
+    <h1>{{ title }}</h1>
+  </div>
+  <div class="post-body" data-reveal>
+    {{ content | safe }}
+  </div>
+</article>

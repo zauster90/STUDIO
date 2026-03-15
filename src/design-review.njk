@@ -1,0 +1,322 @@
+---
+layout: false
+title: Design Review
+permalink: /design-review/
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Design Review — Zach Miller Studio</title>
+
+  <!-- Google Fonts (same as main site) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inconsolata:wght@300;400;500&family=Karla:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400&display=swap" rel="stylesheet">
+
+  <!-- Base CSS -->
+  <link rel="stylesheet" href="/assets/css/base.css">
+  <link rel="stylesheet" href="/assets/css/layout.css">
+  <link rel="stylesheet" href="/assets/css/components.css">
+
+  <!-- Theme override (loaded dynamically) -->
+  <link rel="stylesheet" href="" id="theme-css">
+
+  <style>
+    /* ── Theme switcher bar — neutral, stays consistent across all themes ── */
+    .theme-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 9999;
+      background: #2a2a2a;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.65rem 1.5rem;
+      font-family: -apple-system, Helvetica, Arial, sans-serif;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+    }
+
+    .theme-bar-label {
+      color: #999999;
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-right: 0.5rem;
+      white-space: nowrap;
+    }
+
+    .theme-btn {
+      background: transparent;
+      color: #cccccc;
+      border: 1px solid #555555;
+      padding: 0.35rem 0.85rem;
+      font-size: 0.7rem;
+      font-family: -apple-system, Helvetica, Arial, sans-serif;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      border-radius: 3px;
+      white-space: nowrap;
+    }
+
+    .theme-btn:hover {
+      background: #444444;
+      color: #ffffff;
+      border-color: #777777;
+    }
+
+    .theme-btn.active {
+      background: #ffffff;
+      color: #1a1a1a;
+      border-color: #ffffff;
+      font-weight: 600;
+    }
+
+    /* Push page content below the fixed bar */
+    .page {
+      margin-top: 52px;
+    }
+
+    /* ── Review section labels ── */
+    .review-section-label {
+      font-family: -apple-system, Helvetica, Arial, sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #999999;
+      background: #2a2a2a;
+      display: inline-block;
+      padding: 0.2rem 0.6rem;
+      border-radius: 2px;
+      margin-bottom: 1.5rem;
+    }
+
+    /* ── Responsive bar ── */
+    @media (max-width: 640px) {
+      .theme-bar {
+        flex-wrap: wrap;
+        gap: 0.35rem;
+        padding: 0.5rem 0.75rem;
+      }
+      .theme-bar-label {
+        width: 100%;
+        margin-bottom: 0.15rem;
+      }
+      .theme-btn {
+        font-size: 0.6rem;
+        padding: 0.3rem 0.6rem;
+      }
+      .page {
+        margin-top: 88px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Theme switcher bar ── -->
+  <div class="theme-bar">
+    <span class="theme-bar-label">Theme:</span>
+    <button class="theme-btn active" data-theme="">Current</button>
+    <button class="theme-btn" data-theme="/assets/css/themes/gallery-white.css">A: Gallery White</button>
+    <button class="theme-btn" data-theme="/assets/css/themes/warm-studio.css">B: Warm Studio</button>
+    <button class="theme-btn" data-theme="/assets/css/themes/editorial.css">C: Editorial</button>
+    <button class="theme-btn" data-theme="/assets/css/themes/dark-mode.css">D: Dark Mode</button>
+  </div>
+
+  <!-- ── Page shell (mirrors real site structure) ── -->
+  <div class="page">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <a href="/" class="site-name">Zach Miller</a>
+      <div class="site-tagline">Painter / Printmaker</div>
+
+      <nav>
+        <a href="#" class="nav-item active">Work</a>
+        <div class="nav-submenu">
+          <a href="#" class="nav-subitem active">Paintings</a>
+          <a href="#" class="nav-subitem">Prints</a>
+          <a href="#" class="nav-subitem">Drawings</a>
+        </div>
+        <a href="#" class="nav-item">Writing</a>
+        <a href="#" class="nav-item">About</a>
+        <a href="#" class="nav-item">Contact</a>
+      </nav>
+
+      <div class="sidebar-footer">
+        Oklahoma City, OK<br>
+        <a href="#">Instagram</a> / <a href="#">Email</a><br>
+        &copy; 2026 Zach Miller
+      </div>
+    </aside>
+
+    <!-- Main content -->
+    <main class="main">
+
+      <!-- ── Section 1: Featured Work ── -->
+      <div class="review-section-label">Featured Work</div>
+
+      <div class="featured-work">
+        <div class="featured-image-wrap">
+          <img src="/images/works/web 1.jpg" alt="Featured painting">
+        </div>
+        <div class="featured-meta">
+          <div class="featured-meta-item">
+            <span class="featured-meta-key">Title</span>
+            <span class="featured-meta-val"><strong>Morning Light on Grand</strong></span>
+          </div>
+          <div class="featured-meta-item">
+            <span class="featured-meta-key">Medium</span>
+            <span class="featured-meta-val">Oil on canvas</span>
+          </div>
+          <div class="featured-meta-item">
+            <span class="featured-meta-key">Size</span>
+            <span class="featured-meta-val">48 &times; 36 in</span>
+          </div>
+          <div class="featured-meta-item">
+            <span class="featured-meta-key">Year</span>
+            <span class="featured-meta-val">2025</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Section 2: Gallery Grid ── -->
+      <hr class="section-divider">
+      <div class="review-section-label">Gallery Grid</div>
+
+      <div class="gallery-header">
+        <div class="gallery-title">Recent Paintings</div>
+        <div class="gallery-count">4 works</div>
+      </div>
+
+      <div class="gallery-grid">
+        <a href="#" class="gallery-item">
+          <img src="/images/works/web 1.jpg" alt="Work 1">
+          <div class="gallery-overlay">
+            <span class="gallery-overlay-title">Morning Light on Grand</span>
+            <span class="gallery-overlay-year">2025</span>
+          </div>
+        </a>
+        <a href="#" class="gallery-item">
+          <img src="/images/works/web 2.jpg" alt="Work 2">
+          <div class="gallery-overlay">
+            <span class="gallery-overlay-title">Southside Dusk</span>
+            <span class="gallery-overlay-year">2025</span>
+          </div>
+        </a>
+        <a href="#" class="gallery-item">
+          <img src="/images/works/web 3.jpg" alt="Work 3">
+          <div class="gallery-overlay">
+            <span class="gallery-overlay-title">Plaza District Study</span>
+            <span class="gallery-overlay-year">2024</span>
+          </div>
+        </a>
+        <a href="#" class="gallery-item">
+          <img src="/images/works/web 4.jpg" alt="Work 4">
+          <div class="gallery-overlay">
+            <span class="gallery-overlay-title">Western Avenue in Rain</span>
+            <span class="gallery-overlay-year">2024</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- ── Section 3: Blog Excerpt ── -->
+      <hr class="section-divider">
+      <div class="review-section-label">Writing / Blog</div>
+
+      <div class="post-list">
+        <a href="#" class="post-entry">
+          <div class="post-date">2025.11.12</div>
+          <div>
+            <div class="post-title">Notes on Painting Plein Air in November</div>
+            <div class="post-excerpt">The light this time of year has a particular quality that I keep chasing. Shorter sessions, faster decisions, and the constant negotiation between accuracy and feeling.</div>
+            <div class="post-tags">
+              <span class="post-tag">Process</span>
+              <span class="post-tag">Plein Air</span>
+            </div>
+          </div>
+        </a>
+        <a href="#" class="post-entry">
+          <div class="post-date">2025.09.28</div>
+          <div>
+            <div class="post-title">Studio Visit with Factory Obscura</div>
+            <div class="post-excerpt">Spent an afternoon with the collective talking about collaborative art-making, immersive environments, and what it means to build something bigger than yourself.</div>
+            <div class="post-tags">
+              <span class="post-tag">Community</span>
+            </div>
+          </div>
+        </a>
+        <a href="#" class="post-entry">
+          <div class="post-date">2025.07.15</div>
+          <div>
+            <div class="post-title">New Monotype Series: Residual Forms</div>
+            <div class="post-excerpt">Working through a series of ghost prints, embracing what the plate gives back after the first pull. Each one is a conversation with the previous.</div>
+            <div class="post-tags">
+              <span class="post-tag">Printmaking</span>
+              <span class="post-tag">New Work</span>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- ── Section 4: Contact Preview ── -->
+      <hr class="section-divider">
+      <div class="review-section-label">Contact Form</div>
+
+      <div class="contact-content" style="margin-top: 0;">
+        <p class="contact-intro">
+          Interested in a piece, a commission, or just want to talk about art?
+          <strong>I'd love to hear from you.</strong>
+        </p>
+
+        <form onsubmit="return false;">
+          <div class="form-group">
+            <label class="form-label" for="review-name">Name</label>
+            <input class="form-input" type="text" id="review-name" placeholder="Your name">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="review-email">Email</label>
+            <input class="form-input" type="email" id="review-email" placeholder="your@email.com">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="review-message">Message</label>
+            <textarea class="form-textarea" id="review-message" placeholder="What's on your mind?"></textarea>
+          </div>
+          <button class="btn" type="submit">Send Message</button>
+        </form>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- ── Theme switcher logic ── -->
+  <script>
+    (function() {
+      var themeLink = document.getElementById('theme-css');
+      var buttons = document.querySelectorAll('.theme-btn');
+
+      buttons.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          // Update active state
+          buttons.forEach(function(b) { b.classList.remove('active'); });
+          btn.classList.add('active');
+
+          // Load or unload theme CSS
+          var themePath = btn.getAttribute('data-theme');
+          if (themePath) {
+            themeLink.setAttribute('href', themePath);
+          } else {
+            themeLink.setAttribute('href', '');
+          }
+        });
+      });
+    })();
+  </script>
+
+</body>
+</html>
