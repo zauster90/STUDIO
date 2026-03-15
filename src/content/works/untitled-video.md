@@ -4,8 +4,8 @@ year: 2024
 medium: "Video"
 dimensions: ""
 category: new-media
-image: /images/works/placeholder-video.jpg
-video_file: /video/1 min length video.mp4
+image: https://media.zach-miller-studio.com/images/works/placeholder-video.jpg
+video_file: https://media.zach-miller-studio.com/New Media/1 min length video.mp4
 video_embed:
 featured: false
 ---

@@ -3,8 +3,6 @@ import markdownIt from "markdown-it";
 export default function(eleventyConfig) {
   // Pass through static assets
   eleventyConfig.addPassthroughCopy("src/assets");
-  eleventyConfig.addPassthroughCopy("src/images");
-  eleventyConfig.addPassthroughCopy("src/video");
   eleventyConfig.addPassthroughCopy("src/admin");
 
   // Collections

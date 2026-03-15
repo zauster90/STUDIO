@@ -4,7 +4,7 @@ year: 2024
 medium: "Oil and graphite on linen"
 dimensions: "71.6 x 94.5 in."
 category: painting
-image: /images/works/work-001.jpg
+image: https://media.zach-miller-studio.com/images/works/work-001.jpg
 video_file:
 video_embed:
 featured: true

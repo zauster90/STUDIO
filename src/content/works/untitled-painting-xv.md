@@ -4,7 +4,7 @@ year: 2024
 medium: "Oil on linen"
 dimensions: ""
 category: painting
-image: /images/works/web 98.jpg
+image: https://media.zach-miller-studio.com/images/works/web 98.jpg
 video_file:
 video_embed:
 featured: false
