@@ -7,7 +7,7 @@
   },
   "scripts": {
     "dev": "eleventy --serve --port=4403",
-    "build": "eleventy",
+    "build": "rm -rf _site && eleventy",
     "clean": "rm -rf _site"
   },
   "keywords": [],
