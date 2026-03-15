@@ -1,0 +1,159 @@
+---
+layout: false
+permalink: /media-map/
+---
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Media Mapping Helper</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #111; color: #fff; padding: 20px; }
+    h1 { margin-bottom: 10px; }
+    h2 { color: #7bb; margin-top: 40px; border-bottom: 1px solid #333; padding-bottom: 8px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 16px; margin-top: 16px; }
+    .card { background: #222; border-radius: 8px; overflow: hidden; }
+    .card img { width: 100%; height: 200px; object-fit: contain; background: #1a1a1a; }
+    .card .info { padding: 8px 12px; font-size: 11px; word-break: break-all; color: #aaa; }
+    .card .info strong { color: #fff; font-size: 13px; display: block; margin-bottom: 4px; }
+    .card .info code { background: #333; padding: 2px 4px; border-radius: 3px; font-size: 10px; display: block; margin-top: 4px; cursor: pointer; }
+    .unmapped { margin-top: 60px; }
+    .unmapped h2 { color: #f77; }
+    .work-card { background: #1a1a2a; border-radius: 8px; padding: 16px; margin-bottom: 12px; }
+    .work-card h3 { margin: 0 0 4px; }
+    .work-card .meta { color: #888; font-size: 13px; }
+  </style>
+</head>
+<body>
+  <h1>Media Mapping Helper</h1>
+  <p>Use this page to identify which R2 file belongs to which artwork. Click an image to open it full size.</p>
+
+  <h2>Painting folder (R2)</h2>
+  <div class="grid">
+    {% set paintings = [
+      "IMG_5881.jpg",
+      "IMG_1168.jpg",
+      "IMG-3137.jpg",
+      "IMG_1399+web.jpg",
+      "IMG_20181111_165418_099.jpg",
+      "IMG_20190621_080605.jpg",
+      "IMG_6787+(1).jpg",
+      "Grey Painting 4square.jpg",
+      "Collapse, Zach Miller, Intaglio, 20x20 in. 2016.jpg",
+      "2025+painting+2+web(1).jpg",
+      "2025+painting+4+web.jpg",
+      "Blue+fade+for+web(1).jpg",
+      "Trawl+copy+for+web.jpg",
+      "big+green+2+edited+copy.jpg",
+      "blue+swirl+web.jpg",
+      "$R3X582T(1).JPG",
+      "Modal Trajectory 1 4SQUARE.jpg",
+      "four squares wax piece.jpg"
+    ] %}
+    {% for f in paintings %}
+    <div class="card">
+      <a href="https://media.zach-miller-studio.com/Painting/{{ f }}" target="_blank">
+        <img src="https://media.zach-miller-studio.com/Painting/{{ f }}" alt="{{ f }}">
+      </a>
+      <div class="info">
+        <strong>{{ f }}</strong>
+        <code>https://media.zach-miller-studio.com/Painting/{{ f }}</code>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <h2>Drawings and Prints folder (R2)</h2>
+  <div class="grid">
+    {% set drawings = [
+      "MT8.jpg",
+      "Object2.JPG",
+      "Object3.JPG",
+      "TRAP copy.jpg",
+      "Verge copy.jpg",
+      "ZERO.JPG",
+      "Same As It Ever Was 2.jpg",
+      "RIVER.jpg",
+      "Transmission, Zach Miller, Intaglio, 20x20 in. 2017.jpg",
+      "untitled+(Interstice)+$SQUARE.jpg",
+      "untitled+(Fissure)+4SQUARE.jpg",
+      "Untitled (blue collage).jpg",
+      "Untitled+(+raw+file+)+copy+copy.jpg",
+      "untitled+blue+cut+raw+copy+web.jpg",
+      "utitled+blue+curve+figurative+raw+copy.jpg",
+      "four+squares+wax+piece.jpg",
+      "Box+Print.JPG",
+      "Miller_Zachary_MT4.jpg",
+      "Screenshot+2023-03-24+151157.jpg",
+      "New Collage Dark Version copy.jpg",
+      "New+Collage+Dark+Version.jpg",
+      "MT8 (2).jpg"
+    ] %}
+    {% for f in drawings %}
+    <div class="card">
+      <a href="https://media.zach-miller-studio.com/Drawings%20and%20Prints/{{ f }}" target="_blank">
+        <img src="https://media.zach-miller-studio.com/Drawings%20and%20Prints/{{ f }}" alt="{{ f }}">
+      </a>
+      <div class="info">
+        <strong>{{ f }}</strong>
+        <code>https://media.zach-miller-studio.com/Drawings%20and%20Prints/{{ f }}</code>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <h2>New Media folder (R2)</h2>
+  <div class="grid">
+    {% set videos = [
+      "spin closeup.mp4",
+      "rainbow1.mp4",
+      "blue spin.mp4",
+      "dancer square 2024.mp4",
+      "full length rainbow 2024.mp4",
+      "landlapse TD 1.mp4",
+      "white spin full length 2024.mp4",
+      "trampoline guy first export.mp4",
+      "SHIP-GIF-1web.mp4",
+      "20221130171615.mp4",
+      "1 min length video.mp4"
+    ] %}
+    {% for f in videos %}
+    <div class="card">
+      <video muted preload="metadata" style="width:100%;height:200px;object-fit:contain;background:#1a1a1a;">
+        <source src="https://media.zach-miller-studio.com/New%20Media/{{ f }}#t=30" type="video/mp4">
+      </video>
+      <div class="info">
+        <strong>{{ f }}</strong>
+        <code>https://media.zach-miller-studio.com/New%20Media/{{ f }}</code>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <div class="unmapped">
+    <h2>Works that still need correct R2 URLs</h2>
+    <p>Match each work below to an image above, then paste the URL into the CMS.</p>
+
+    <h3 style="color:#7bb;margin-top:20px;">Paintings</h3>
+    {% for work in collections.paintings %}
+    <div class="work-card">
+      <h3>{{ work.data.title }}</h3>
+      <div class="meta">{{ work.data.year }} · {{ work.data.medium }}{% if work.data.dimensions %} · {{ work.data.dimensions }}{% endif %}</div>
+      <div class="meta" style="color:#f77;margin-top:4px;">Current URL: {{ work.data.image }}</div>
+    </div>
+    {% endfor %}
+
+    <h3 style="color:#7bb;margin-top:20px;">Drawings needing remapping</h3>
+    {% for work in collections.drawings %}
+      {% set url = work.data.image %}
+      {% if "images/works" in url %}
+    <div class="work-card">
+      <h3>{{ work.data.title }}</h3>
+      <div class="meta">{{ work.data.year }} · {{ work.data.medium }}{% if work.data.dimensions %} · {{ work.data.dimensions }}{% endif %}</div>
+      <div class="meta" style="color:#f77;margin-top:4px;">Current URL: {{ work.data.image }}</div>
+    </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</body>
+</html>
