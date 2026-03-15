@@ -76,6 +76,7 @@
 .gallery-header {
   margin-top: 5rem;
   margin-bottom: 1.5rem;
+  text-align: center;
 }
 .gallery-title {
   font-family: var(--font-sans);
@@ -173,6 +174,11 @@
 /* ══════════════════════════════════════════════════════════════════════════
    WORK DETAIL (individual work page)
 ══════════════════════════════════════════════════════════════════════════ */
+.back-links {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
 .back-link {
   display: inline-flex;
   align-items: center;
@@ -182,7 +188,6 @@
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--ink-dim);
-  margin-bottom: 2rem;
   transition: color var(--t-fast);
 }
 .back-link::before { content: '\2190'; }
@@ -220,6 +225,7 @@
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
+  justify-content: center;
   gap: 0.15rem 2rem;
   padding-top: 1.2rem;
   padding-bottom: 1rem;
@@ -253,6 +259,8 @@
 .work-statement {
   max-width: 60ch;
   margin-top: 1rem;
+  margin-left: auto;
+  margin-right: auto;
 }
 .work-statement p {
   font-family: var(--font-sans);
@@ -639,10 +647,10 @@ details[open] .cv-toggle::after {
 ══════════════════════════════════════════════════════════════════════════ */
 .video-embed {
   position: relative;
-  padding-bottom: 39.375%; /* 56.25% × 0.7 = 16:9 at 70% size */
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
   height: 0;
   overflow: hidden;
-  max-width: 70%;
+  max-width: 100%;
 }
 .video-embed iframe {
   position: absolute;
@@ -653,10 +661,12 @@ details[open] .cv-toggle::after {
   border: none;
 }
 
-/* Self-hosted video on work detail — 70% of featured work size */
+/* Self-hosted video on work detail */
 .work-image-wrap video {
-  max-width: 70%;
-  max-height: calc((100vh - 18rem) * 0.7);
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: calc(100vh - 14rem);
   display: block;
 }
 

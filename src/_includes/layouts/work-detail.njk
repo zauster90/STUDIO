@@ -3,7 +3,16 @@ layout: layouts/base.njk
 activeNav: work
 ---
 
-<a class="back-link" href="/work/">All Work</a>
+<div class="back-links">
+  <a class="back-link" href="/work/">All Work</a>
+  {% if category == "painting" %}
+  <a class="back-link" href="/work/#painting">Painting</a>
+  {% elif category == "drawing" %}
+  <a class="back-link" href="/work/#drawing">Drawing &amp; Print</a>
+  {% elif category == "new-media" %}
+  <a class="back-link" href="/work/#new-media">New Media</a>
+  {% endif %}
+</div>
 
 <div class="work-detail" data-reveal>
   <div class="work-image-wrap">
@@ -12,7 +21,7 @@ activeNav: work
       <iframe src="{{ video_embed }}" width="100%" height="450" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
     </div>
     {% elif video_file %}
-    <video controls preload="metadata" poster="{{ image }}">
+    <video controls autoplay muted loop playsinline preload="auto">
       <source src="{{ video_file }}" type="video/mp4">
     </video>
     {% else %}
