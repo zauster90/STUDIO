@@ -1,6 +1,7 @@
 ---
 title: "Breach"
 year: 2025
+order: 3
 medium: "Oil on panel"
 dimensions: "24 x 24 in."
 category: painting

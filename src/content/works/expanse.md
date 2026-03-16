@@ -1,6 +1,7 @@
 ---
 title: "Expanse"
 year: 2025
+order: 5
 medium: "Acrylic on panel"
 dimensions: "36 x 36 in."
 category: painting

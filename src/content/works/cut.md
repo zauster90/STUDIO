@@ -1,6 +1,7 @@
 ---
 title: "Cut"
 year: 2017
+order: 15
 medium: "Intaglio on canvas"
 dimensions: "30 x 30 in."
 category: drawing

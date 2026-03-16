@@ -1,6 +1,7 @@
 ---
 title: "Reflection I"
 year: 2025
+order: 10
 medium: "Acrylic on panel"
 dimensions: "24 x 24 in."
 category: painting

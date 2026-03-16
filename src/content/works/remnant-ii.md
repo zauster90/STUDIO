@@ -1,6 +1,7 @@
 ---
 title: "Remnant II"
 year: 2018
+order: 8
 medium: "Intaglio"
 dimensions: "8 x 8 in."
 category: drawing

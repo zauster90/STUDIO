@@ -1,6 +1,7 @@
 ---
 title: "Distortion"
 year: 2026
+order: 1
 medium: "Acrylic on panel"
 dimensions: "18 x 18 in."
 category: painting

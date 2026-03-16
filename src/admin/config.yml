@@ -13,10 +13,11 @@ collections:
     folder: "src/content/works"
     create: true
     slug: "{{slug}}"
-    sortable_fields: ["title", "year", "category"]
+    sortable_fields: ["title", "year", "category", "order"]
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Year", name: "year", widget: "number", value_type: "int" }
+      - { label: "Display Order", name: "order", widget: "number", value_type: "int", default: 100, hint: "Lower numbers appear first within each category. Use this to control the display order on your website." }
       - { label: "Medium", name: "medium", widget: "string" }
       - { label: "Dimensions", name: "dimensions", widget: "string", required: false }
       - label: "Category"

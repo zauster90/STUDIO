@@ -1,6 +1,7 @@
 ---
 title: "Heap"
 year: 2018
+order: 6
 medium: "Intaglio collage"
 dimensions: "20 x 28 in."
 category: drawing

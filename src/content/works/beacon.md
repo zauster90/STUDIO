@@ -1,6 +1,7 @@
 ---
 title: "Beacon"
 year: 2025
+order: 2
 medium: "Oil on panel"
 dimensions: "24 x 24 in."
 category: painting

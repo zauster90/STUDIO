@@ -1,6 +1,7 @@
 ---
 title: "Same As It Ever Was"
 year: 2016
+order: 21
 medium: "Viscosity intaglio"
 dimensions: "6 x 10 in."
 category: drawing

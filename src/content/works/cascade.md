@@ -1,6 +1,7 @@
 ---
 title: "Cascade"
 year: 2025
+order: 4
 medium: "Oil on panel"
 dimensions: "18 x 18 in."
 category: painting

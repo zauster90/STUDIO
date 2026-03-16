@@ -1,6 +1,7 @@
 ---
 title: "MT8 II"
 year: 2017
+order: 17
 medium: "Viscosity intaglio"
 dimensions: "14 x 14 in."
 category: drawing

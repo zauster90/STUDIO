@@ -6,28 +6,36 @@ export default function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/images");
   eleventyConfig.addPassthroughCopy("src/admin");
 
+  // Sort helper: by display order first, then by year descending as tiebreaker
+  function sortByOrder(a, b) {
+    const orderA = a.data.order ?? 100;
+    const orderB = b.data.order ?? 100;
+    if (orderA !== orderB) return orderA - orderB;
+    return (b.data.year || 0) - (a.data.year || 0);
+  }
+
   // Collections
   eleventyConfig.addCollection("works", function(collectionApi) {
     return collectionApi.getFilteredByGlob("src/content/works/*.md")
-      .sort((a, b) => (b.data.year || 0) - (a.data.year || 0));
+      .sort(sortByOrder);
   });
 
   eleventyConfig.addCollection("paintings", function(collectionApi) {
     return collectionApi.getFilteredByGlob("src/content/works/*.md")
       .filter(item => item.data.category === "painting")
-      .sort((a, b) => (b.data.year || 0) - (a.data.year || 0));
+      .sort(sortByOrder);
   });
 
   eleventyConfig.addCollection("drawings", function(collectionApi) {
     return collectionApi.getFilteredByGlob("src/content/works/*.md")
       .filter(item => item.data.category === "drawing")
-      .sort((a, b) => (b.data.year || 0) - (a.data.year || 0));
+      .sort(sortByOrder);
   });
 
   eleventyConfig.addCollection("newmedia", function(collectionApi) {
     return collectionApi.getFilteredByGlob("src/content/works/*.md")
       .filter(item => item.data.category === "new-media")
-      .sort((a, b) => (b.data.year || 0) - (a.data.year || 0));
+      .sort(sortByOrder);
   });
 
   eleventyConfig.addCollection("posts", function(collectionApi) {

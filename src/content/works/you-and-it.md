@@ -1,6 +1,7 @@
 ---
 title: "You and It"
 year: 2017
+order: 20
 medium: "Intaglio viscosity print"
 dimensions: "5 x 8 in."
 category: drawing

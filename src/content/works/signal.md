@@ -1,6 +1,7 @@
 ---
 title: "Signal"
 year: 2018
+order: 11
 medium: "Intaglio collage"
 dimensions: "18 x 24 in."
 category: drawing

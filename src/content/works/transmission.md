@@ -1,6 +1,7 @@
 ---
 title: "Transmission"
 year: 2018
+order: 13
 medium: "Intaglio"
 dimensions: "20 x 20 in."
 category: drawing

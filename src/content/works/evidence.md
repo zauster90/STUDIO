@@ -1,6 +1,7 @@
 ---
 title: "Evidence"
 year: 2020
+order: 20
 medium: "Oil on panel"
 dimensions: "16 x 16 in."
 category: painting

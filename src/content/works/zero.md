@@ -1,6 +1,7 @@
 ---
 title: "Zero"
 year: 2015
+order: 23
 medium: "Charcoal on paper"
 dimensions: "22 x 30 in."
 category: drawing

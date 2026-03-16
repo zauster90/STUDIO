@@ -1,6 +1,7 @@
 ---
 title: "Trap"
 year: 2016
+order: 22
 medium: "Intaglio"
 dimensions: "6 x 9 in."
 category: drawing

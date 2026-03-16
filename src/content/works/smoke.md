@@ -1,6 +1,7 @@
 ---
 title: "Smoke"
 year: 2018
+order: 12
 medium: "Lithograph"
 dimensions: "8 x 12 in."
 category: drawing

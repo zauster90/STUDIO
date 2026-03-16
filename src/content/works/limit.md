@@ -1,6 +1,7 @@
 ---
 title: "Limit"
 year: 2023
+order: 13
 medium: "Oil on panel"
 dimensions: "36 x 36 in."
 category: painting

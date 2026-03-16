@@ -1,6 +1,7 @@
 ---
 title: "Fog"
 year: 2022
+order: 15
 medium: "Oil on panel"
 dimensions: "18 x 18 in."
 category: painting

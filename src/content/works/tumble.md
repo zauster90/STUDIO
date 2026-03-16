@@ -1,6 +1,7 @@
 ---
 title: "Tumble"
 year: 2022
+order: 18
 medium: "Oil on panel"
 dimensions: "28 x 28 in."
 category: painting

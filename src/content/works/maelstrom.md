@@ -1,6 +1,7 @@
 ---
 title: "Maelstrom"
 year: 2025
+order: 7
 medium: "Acrylic on panel"
 dimensions: "18 x 18 in."
 category: painting

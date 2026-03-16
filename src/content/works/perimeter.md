@@ -1,6 +1,7 @@
 ---
 title: "Perimeter"
 year: 2025
+order: 8
 medium: "Acrylic on panel"
 dimensions: "18 x 18 in."
 category: painting

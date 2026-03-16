@@ -1,6 +1,7 @@
 ---
 title: "Reflection II"
 year: 2025
+order: 9
 medium: "Acrylic on panel"
 dimensions: "24 x 24 in."
 category: painting

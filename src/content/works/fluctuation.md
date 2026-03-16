@@ -1,6 +1,7 @@
 ---
 title: "Fluctuation"
 year: 2025
+order: 6
 medium: "Oil on panel"
 dimensions: "24 x 24 in."
 category: painting

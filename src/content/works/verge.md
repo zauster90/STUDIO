@@ -1,6 +1,7 @@
 ---
 title: "Verge"
 year: 2018
+order: 14
 medium: "Intaglio"
 dimensions: "20 x 28 in."
 category: drawing

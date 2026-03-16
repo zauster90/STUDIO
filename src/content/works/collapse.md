@@ -1,6 +1,7 @@
 ---
 title: "Collapse"
 year: 2018
+order: 4
 medium: "Intaglio"
 dimensions: "20 x 20 in."
 category: drawing

@@ -1,6 +1,7 @@
 ---
 title: "Strike"
 year: 2025
+order: 12
 medium: "Acrylic on panel"
 dimensions: "18 x 18 in."
 category: painting

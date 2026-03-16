@@ -1,6 +1,7 @@
 ---
 title: "Modal Trajectory 4"
 year: 2017
+order: 19
 medium: "Viscosity intaglio"
 dimensions: "8 x 8 in."
 category: drawing

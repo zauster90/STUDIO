@@ -1,6 +1,7 @@
 ---
 title: "Boundary"
 year: 2018
+order: 3
 medium: "Ink roller on canvas"
 dimensions: "40 x 40 in."
 category: drawing

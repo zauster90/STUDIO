@@ -1,6 +1,7 @@
 ---
 title: "Verdict"
 year: 2021
+order: 1
 medium: "Graphite on paper"
 dimensions: "20 x 20 in."
 category: drawing

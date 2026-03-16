@@ -1,6 +1,7 @@
 ---
 title: "Collapse II"
 year: 2019
+order: 21
 medium: "Oil on zinc"
 dimensions: "20 x 20 in."
 category: painting

@@ -1,6 +1,7 @@
 ---
 title: "Blue Transit"
 year: 2018
+order: 2
 medium: "Collage on board"
 dimensions: "8 x 10 in."
 category: drawing

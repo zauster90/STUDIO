@@ -1,6 +1,7 @@
 ---
 title: "Four Corners"
 year: 2017
+order: 16
 medium: "Intaglio"
 dimensions: "20 x 20 in."
 category: drawing

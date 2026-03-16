@@ -1,6 +1,7 @@
 ---
 title: "River"
 year: 2018
+order: 10
 medium: "Intaglio collage"
 dimensions: "60 x 48 in."
 category: drawing
