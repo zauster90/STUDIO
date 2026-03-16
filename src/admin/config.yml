@@ -26,7 +26,7 @@ collections:
           - { label: "Painting", value: "painting" }
           - { label: "Drawing & Print", value: "drawing" }
           - { label: "New Media", value: "new-media" }
-      - { label: "Image URL", name: "image", widget: "string", hint: "Paste the full R2 URL from media.zach-miller-studio.com" }
+      - { label: "Image", name: "image", widget: "image", required: false }
       - { label: "Video File URL", name: "video_file", widget: "string", required: false, hint: "Paste the full R2 video URL" }
       - { label: "Video Embed URL", name: "video_embed", widget: "string", required: false, hint: "Paste a Vimeo or YouTube embed URL" }
       - { label: "Featured", name: "featured", widget: "boolean", default: false }
