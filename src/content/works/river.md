@@ -7,5 +7,5 @@ category: drawing
 image: /images/river-zach-miller-intaglio-collage-60x48-in..jpg
 video_file: ""
 video_embed: ""
-featured: false
+featured: true
 ---
