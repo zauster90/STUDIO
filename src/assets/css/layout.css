@@ -122,6 +122,7 @@ nav {
 .main {
   padding: var(--content-pad-top) var(--content-pad-right) var(--content-pad-bottom) var(--content-pad-left);
   min-width: 0;
+  max-width: 960px;
 }
 
 /* ── Section primitives ── */

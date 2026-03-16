@@ -203,14 +203,13 @@
   position: relative;
   display: flex;
   justify-content: center;
-  align-items: center;
-  max-height: calc(100vh - 18rem);
+  align-items: flex-start;
   overflow: hidden;
 }
 .work-image-wrap img {
   width: auto;
   max-width: 100%;
-  max-height: calc(100vh - 18rem);
+  max-height: calc(100vh - 14rem);
   height: auto;
   display: block;
   cursor: zoom-in;
@@ -663,11 +662,15 @@ details[open] .cv-toggle::after {
 
 /* Self-hosted video on work detail */
 .work-image-wrap video {
-  width: auto;
+  width: 100%;
   height: auto;
-  max-width: 100%;
-  max-height: calc(100vh - 14rem);
+  max-height: calc(100vh - 10rem);
   display: block;
+}
+
+/* Video embed on work detail */
+.work-image-wrap .video-embed {
+  width: 100%;
 }
 
 /* Video thumbnail in gallery grid */
