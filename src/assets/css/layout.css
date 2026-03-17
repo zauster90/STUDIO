@@ -123,6 +123,8 @@ nav {
   padding: var(--content-pad-top) var(--content-pad-right) var(--content-pad-bottom) var(--content-pad-left);
   min-width: 0;
   max-width: 960px;
+  width: 100%;        /* ← add this */
+  overflow: hidden;   /* ← add this */
 }
 
 /* ── Section primitives ── */
