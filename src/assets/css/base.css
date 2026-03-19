@@ -54,7 +54,7 @@ ul, ol { list-style: none; }
   --sidebar-w: 260px;
   --content-pad-top: 3.5rem;
   --content-pad-right: 5rem;
-  --content-pad-bottom: 6rem;
+  --content-pad-bottom: 3.5rem;
   --content-pad-left: 3rem;
 }
 
