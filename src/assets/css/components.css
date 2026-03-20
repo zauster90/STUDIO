@@ -31,6 +31,12 @@
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   gap: var(--grid-gap);
 }
+.gallery-grid--large {
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+}
+.gallery-grid--xlarge {
+  grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+}
 
 .gallery-item {
   position: relative;

@@ -19,19 +19,21 @@ activeNav: work
            loading="eager">
     </a>
   </div>
-  <div class="featured-meta">
-    <div class="featured-meta-item">
-      <span class="featured-meta-key">Featured</span>
-      <span class="featured-meta-val"><em>{{ work.data.title }}</em>, {{ work.data.year }}</span>
+  <div class="work-meta" style="justify-content: flex-start;">
+    <div class="work-meta-row">
+      <span class="work-meta-key">Title</span>
+      <span class="work-meta-val"><strong>{{ work.data.title }}</strong>, {{ work.data.year }}</span>
     </div>
-    <div class="featured-meta-item">
-      <span class="featured-meta-key">Medium</span>
-      <span class="featured-meta-val">{{ work.data.medium }}</span>
+    <div class="work-meta-row">
+      <span class="work-meta-key">Medium</span>
+      <span class="work-meta-val">{{ work.data.medium }}</span>
     </div>
-    <div class="featured-meta-item">
-      <span class="featured-meta-key">Dimensions</span>
-      <span class="featured-meta-val">{{ work.data.dimensions }}</span>
+    {% if work.data.dimensions %}
+    <div class="work-meta-row">
+      <span class="work-meta-key">Dimensions</span>
+      <span class="work-meta-val">{{ work.data.dimensions }}</span>
     </div>
+    {% endif %}
   </div>
 </div>
 {% endfor %}

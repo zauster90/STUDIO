@@ -30,11 +30,11 @@
   display: block;
   font-family: var(--font-sans);
   font-weight: 900;
-  font-size: 1.4rem;
+  font-size: 1.82rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--ink);
-  line-height: 1.2;
+  line-height: 1.15;
   text-decoration: none;
   transition: opacity var(--t-fast);
 }

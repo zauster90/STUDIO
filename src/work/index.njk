@@ -10,7 +10,7 @@ activeNav: work
     <h2 class="gallery-title">Painting</h2>
     <span class="gallery-count">{{ collections.paintings.length }} works</span>
   </div>
-  <div class="gallery-grid">
+  <div class="gallery-grid gallery-grid--large">
     {% for work in collections.paintings %}
     <a href="{{ work.url }}" class="gallery-item" data-category="painting">
       <img src="{{ work.data.image }}" alt="{{ work.data.title }}, {{ work.data.year }}" width="1200" height="1200" loading="lazy">
@@ -29,7 +29,7 @@ activeNav: work
     <h2 class="gallery-title">Drawing &amp; Print</h2>
     <span class="gallery-count">{{ collections.drawings.length }} works</span>
   </div>
-  <div class="gallery-grid">
+  <div class="gallery-grid gallery-grid--large">
     {% for work in collections.drawings %}
     <a href="{{ work.url }}" class="gallery-item" data-category="drawing">
       <img src="{{ work.data.image }}" alt="{{ work.data.title }}, {{ work.data.year }}" width="1200" height="1200" loading="lazy">
@@ -48,7 +48,7 @@ activeNav: work
     <h2 class="gallery-title">New Media</h2>
     <span class="gallery-count">{{ collections.newmedia.length }} works</span>
   </div>
-  <div class="gallery-grid">
+  <div class="gallery-grid gallery-grid--xlarge">
     {% for work in collections.newmedia %}
     <a href="{{ work.url }}" class="gallery-item" data-category="new-media">
       {% if work.data.video_file %}
