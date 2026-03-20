@@ -164,7 +164,16 @@ nav { display: flex; flex-direction: column; }
     width: 100%;
   }
   .nav-item { padding: 0.2rem 0.5rem; font-size: 0.8rem; }
-  .nav-submenu { display: none; }
+  .nav-submenu {
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 0;
+    gap: 0;
+  }
+  .nav-subitem {
+    padding: 0.2rem 0.5rem;
+    font-size: 0.72rem;
+  }
   .sidebar-footer { display: none; }
 
   .main {
