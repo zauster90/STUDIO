@@ -418,23 +418,22 @@
   color: var(--ink-mid);
 }
 
+
 /* ══════════════════════════════════════════════════════════
    ABOUT — Book layout
 ══════════════════════════════════════════════════════════ */
 .about-book {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
+  grid-template-columns: 1fr 50px 1fr;
   width: 100%;
   align-items: start;
 }
 .about-left {
   max-width: 55ch;
   justify-self: center;
+  margin-left: -50px;
 }
 .about-right {
-  margin-left: -100px;
-  padding-left: 100px;
   justify-self: start;
 }
 
@@ -479,8 +478,10 @@
     grid-template-columns: 1fr;
     gap: 2.5rem;
   }
+  .about-spacer { display: none; }
   .about-left {
     justify-self: start;
+    margin-left: 0;
   }
   .about-right {
     margin-left: 0;
