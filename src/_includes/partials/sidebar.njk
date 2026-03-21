@@ -1,9 +1,22 @@
 <aside class="sidebar">
-  <div>
-    <a class="site-name" href="/">ZACH MILLER</a>
-    <div class="site-tagline">STUDIO</div>
+  <div class="sidebar-header">
+    <div class="sidebar-identity">
+      <a class="site-name" href="/">ZACHARY MILLER</a>
+      <a class="insta-icon" href="https://instagram.com/zauster" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="2" width="20" height="20" rx="5"/>
+          <circle cx="12" cy="12" r="5"/>
+          <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/>
+        </svg>
+      </a>
+    </div>
+    <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span class="menu-toggle-bar"></span>
+      <span class="menu-toggle-bar"></span>
+      <span class="menu-toggle-bar"></span>
+    </button>
   </div>
-  <nav aria-label="Site navigation">
+  <nav class="nav-collapse" aria-label="Site navigation">
     <a class="nav-item{% if activeNav == 'work' %} active{% endif %}" href="/work/">Work</a>
     <div class="nav-submenu">
       <a class="nav-subitem" data-filter="painting" href="/work/#painting">Paint</a>
@@ -16,7 +29,6 @@
   </nav>
   <div class="sidebar-footer">
     &copy; 2025 Zach Miller<br>
-    Oklahoma City, OK<br>
-    <a class="sidebar-insta" href="https://instagram.com/zauster" target="_blank" rel="noopener">Insta: @zauster</a>
+    Oklahoma City, OK
   </div>
 </aside>

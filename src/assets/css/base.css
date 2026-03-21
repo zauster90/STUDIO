@@ -29,11 +29,11 @@ ul, ol { list-style: none; }
   --t-fast: 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   --t-base: 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 
-  --sidebar-w:    200px;
+  --sidebar-w:    260px;
   --pad-top:      80px;
   --pad-bottom:   80px;
   --pad-x:        24px;
-  --grid-gap:     12px;
+  --grid-gap:     30px;
   --section-gap:  3rem;
 }
 

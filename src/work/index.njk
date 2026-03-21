@@ -48,12 +48,12 @@ activeNav: work
     <h2 class="gallery-title">New Media</h2>
     <span class="gallery-count">{{ collections.newmedia.length }} works</span>
   </div>
-  <div class="gallery-grid gallery-grid--xlarge">
+  <div class="gallery-grid gallery-grid--large">
     {% for work in collections.newmedia %}
     <a href="{{ work.url }}" class="gallery-item" data-category="new-media">
       {% if work.data.video_file %}
-      <video muted preload="metadata" playsinline>
-        <source src="{{ work.data.video_file }}#t=30" type="video/mp4">
+      <video autoplay muted loop preload="metadata" playsinline>
+        <source src="{{ work.data.video_file }}" type="video/mp4">
       </video>
       {% else %}
       <img src="{{ work.data.image }}" alt="{{ work.data.title }}, {{ work.data.year }}" width="1200" height="1200" loading="lazy">
