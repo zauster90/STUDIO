@@ -319,12 +319,22 @@
   grid-template-columns: 7rem 1fr;
   gap: 0 2rem;
   padding: 1.2rem 0;
-  border-top: 1px solid var(--rule);
+  background-image: linear-gradient(var(--rule), var(--rule));
+  background-size: 50% 1px;
+  background-repeat: no-repeat;
+  background-position: top left;
   text-decoration: none;
   color: inherit;
   transition: opacity var(--t-base);
 }
-.post-entry:last-child { border-bottom: 1px solid var(--rule); }
+.post-entry:last-child {
+  background-image:
+    linear-gradient(var(--rule), var(--rule)),
+    linear-gradient(var(--rule), var(--rule));
+  background-size: 50% 1px, 50% 1px;
+  background-position: top left, bottom left;
+  background-repeat: no-repeat, no-repeat;
+}
 .post-entry:hover { opacity: 0.6; }
 
 .post-date {
@@ -347,6 +357,7 @@
   font-family: var(--font-sans);
   font-weight: 300;
   font-size: 0.82rem;
+  max-width: 50%;
   color: var(--ink-mid);
   line-height: 1.6;
 }
@@ -380,13 +391,14 @@
   line-height: 1.1;
   letter-spacing: -0.03em;
   color: var(--ink);
+  max-width: 50%;
 }
 .post-body {
-  max-width: 62ch;
   font-family: var(--font-sans);
   font-size: 1rem;
   line-height: 1.8;
   color: var(--ink-mid);
+  max-width: 40%;
 }
 .post-body p { margin-bottom: 1.5em; }
 .post-body p:last-child { margin-bottom: 0; }
@@ -407,12 +419,74 @@
 }
 
 /* ══════════════════════════════════════════════════════════
-   ABOUT
+   ABOUT — Book layout
 ══════════════════════════════════════════════════════════ */
-.about-content {
+.about-book {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
   width: 100%;
-  max-width: 60ch;
-  align-self: flex-start;
+  align-items: start;
+}
+.about-left {
+  max-width: 55ch;
+  justify-self: center;
+}
+.about-right {
+  margin-left: -100px;
+  padding-left: 100px;
+  justify-self: start;
+}
+
+/* Exhibition Record */
+.exhibition-title {
+  font-family: var(--font-sans);
+  font-weight: 900;
+  font-style: italic;
+  font-size: 1.2rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin-bottom: 1.5rem;
+}
+.exhibition-grid {
+  display: grid;
+  grid-template-columns: 3rem 1fr;
+  gap: 0.15rem 1rem;
+}
+.exhibition-year {
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--ink);
+  padding-top: 0.1rem;
+}
+.exhibition-entry {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--ink-mid);
+  padding-bottom: 0.7rem;
+}
+.exhibition-entry strong {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+@media (max-width: 960px) {
+  .about-book {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .about-left {
+    justify-self: start;
+  }
+  .about-right {
+    margin-left: 0;
+    padding-left: 0;
+    padding-top: 2rem;
+  }
 }
 .about-statement p {
   font-family: var(--font-sans);
@@ -427,7 +501,46 @@
   color: var(--ink);
 }
 
-.cv-section { border-top: 1px solid var(--rule); }
+/* Section headings (Artist Statement, Education) — matches gallery/exhibition titles */
+.section-heading {
+  font-family: var(--font-sans);
+  font-weight: 900;
+  font-style: italic;
+  font-size: 1.2rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin-bottom: 1rem;
+}
+.about-statement > p:first-child {
+  padding-top: 25px;
+}
+.about-statement .section-heading {
+  margin-top: 75px;
+}
+
+.artist-statement {
+  padding-left: 1.5rem;
+  margin: 0 0 2em;
+  font-style: italic;
+}
+.artist-statement p {
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  line-height: 1.85;
+  color: var(--ink-mid);
+  margin-bottom: 1.2em;
+}
+.artist-statement p:first-child {
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: var(--ink);
+}
+.artist-statement p:last-child {
+  margin-bottom: 0;
+}
+
+.cv-section { border-top: 1px solid var(--rule); margin-top: 100px; }
 .cv-section:last-child { border-bottom: 1px solid var(--rule); }
 .cv-toggle {
   display: flex;

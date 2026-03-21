@@ -15,7 +15,7 @@ activeNav: writing
     <span class="post-date">{{ post.data.date | date("%B %Y") }}</span>
     <div>
       <div class="post-title">{{ post.data.title }}</div>
-      <div class="post-excerpt">{{ post.content | striptags | truncate(150) }}</div>
+      <div class="post-excerpt">{{ post.content | striptags | truncate(320) }}</div>
       {% if post.data.tags %}
       <div class="post-tags">
         {% for tag in post.data.tags %}
