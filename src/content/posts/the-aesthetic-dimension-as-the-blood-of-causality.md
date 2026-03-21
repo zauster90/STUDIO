@@ -1,6 +1,6 @@
 ---
 title: "The Aesthetic Dimension as the Blood of Causality"
-date: 2026-01-15
+date: 2026-01-04
 tags: [philosophy, ontology]
 ---
 There is a compelling case to be made, drawn from the overlapping territories of Object-Oriented Ontology and quantum physics, that the aesthetic dimension is not an ornamental layer atop reality but is, in fact, constitutive of it.

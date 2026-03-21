@@ -1,6 +1,6 @@
 ---
 title: "Alteration as Subsistence: Latour, Nancy, and the Art of Passage"
-date: 2026-07-15
+date: 2026-03-18
 tags: [philosophy, ontology]
 ---
 There is a question that sits underneath most serious thinking about artmaking and refuses to go away: what exactly is the ontological status of the thing being made? Not its cultural value, not its meaning, not its relationship to tradition or market or institution, but the more basic question of what kind of existence it has and how that existence is produced.

@@ -1,6 +1,6 @@
 ---
 title: "Process as Ontological Event: Instauration, Potentiality, and the Trembling Form"
-date: 2026-02-10
+date: 2026-01-22
 tags: [process, philosophy]
 ---
 To make art is to participate in what Etienne Souriau, as interpreted by Bruno Latour, called *instauration.* Not the actualization of a pre-existing ideal, but a genuinely risky invention in which both artist and work co-emerge through the doing.

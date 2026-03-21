@@ -1,6 +1,6 @@
 ---
 title: "Withdrawal, Excess, and the Limits of Signification in Material Aesthetic Experience"
-date: 2026-03-05
+date: 2026-02-07
 tags: [aesthetics, philosophy]
 ---
 A persistent philosophical problem for the practicing artist is the inadequacy of language to communicate what the artwork does. This is not merely a practical frustration but an ontological condition.

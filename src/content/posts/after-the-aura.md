@@ -1,6 +1,6 @@
 ---
 title: "After the Aura: Reproduction, the Intransmissible, and Making as Survival"
-date: 2026-06-20
+date: 2026-03-11
 tags: [theory, practice]
 ---
 Walter Benjamin's diagnosis of the withering of the aura under conditions of mechanical reproduction remains one of the most generative provocations in modern aesthetics. Not because it is simply correct but because the problem it names has only deepened.

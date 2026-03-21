@@ -1,6 +1,6 @@
 ---
 title: "The Artwork as Symptom: Desire, the Real, and the Blockage of the Symbolic"
-date: 2026-04-10
+date: 2026-02-19
 tags: [psychoanalysis, aesthetics]
 ---
 In Lacanian psychoanalytic theory, the subject is constituted around a fundamental lack, a void at the center of being that desire perpetually circles without ever filling. This structure is not a problem to be solved but the very engine of subjectivity.

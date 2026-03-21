@@ -1,6 +1,6 @@
 ---
 title: "Disparity as Aesthetic Principle: Zizek, the Abject, and the Repelling X"
-date: 2026-05-15
+date: 2026-03-02
 tags: [philosophy, aesthetics]
 ---
 Slavoj Zizek's concept of disparity, developed through a Hegelian diagnostic of contemporary culture, identifies three domains in which fundamental ontological difference persists and disrupts the homogenizing logic of late capitalism: the ontological, the aesthetic, and the theological-political.
