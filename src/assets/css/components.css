@@ -379,6 +379,11 @@
 
 @media (max-width: 640px) {
   .post-entry { grid-template-columns: 1fr; gap: 0.4rem 0; }
+  .post-excerpt { max-width: 100%; }
+}
+@media (max-width: 768px) {
+  .post-header h1 { max-width: 100%; }
+  .post-body { max-width: 100%; }
 }
 
 /* Blog post single */
