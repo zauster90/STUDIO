@@ -12,6 +12,7 @@
 .gallery-title {
   font-family: var(--font-sans);
   font-weight: 900;
+  font-style: italic;
   font-size: 1.2rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
