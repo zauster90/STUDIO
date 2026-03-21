@@ -8,35 +8,60 @@ activeNav: work
   <h2 class="gallery-title">Featured Work</h2>
 </div>
 
-{% set featuredWorks = collections.works | featured | limit(1) %}
-{% for work in featuredWorks %}
 <div class="featured-work" data-reveal>
   <div class="featured-image-wrap">
-    <a href="{{ work.url }}">
-      <img src="{{ work.data.image }}"
-           alt="{{ work.data.title }}, {{ work.data.year }} — {{ work.data.medium }}, {{ work.data.dimensions }}"
-           width="1200" height="1200"
-           loading="eager">
+    <a id="featured-link" href="">
+      <img id="featured-img" src="" alt="" width="1200" height="1200" loading="eager">
     </a>
   </div>
   <div class="work-meta">
     <div class="work-meta-row">
       <span class="work-meta-key">Title</span>
-      <span class="work-meta-val"><strong>{{ work.data.title }}</strong>, {{ work.data.year }}</span>
+      <span class="work-meta-val" id="featured-title"></span>
     </div>
     <div class="work-meta-row">
       <span class="work-meta-key">Medium</span>
-      <span class="work-meta-val">{{ work.data.medium }}</span>
+      <span class="work-meta-val" id="featured-medium"></span>
     </div>
-    {% if work.data.dimensions %}
-    <div class="work-meta-row">
+    <div class="work-meta-row" id="featured-dimensions-row">
       <span class="work-meta-key">Dimensions</span>
-      <span class="work-meta-val">{{ work.data.dimensions }}</span>
+      <span class="work-meta-val" id="featured-dimensions"></span>
     </div>
-    {% endif %}
   </div>
 </div>
-{% endfor %}
+
+<script>
+(function () {
+  var works = [
+    {% for work in collections.paintings %}
+    { title: {{ work.data.title | dump | safe }}, year: {{ work.data.year }}, medium: {{ work.data.medium | dump | safe }}, dimensions: {{ work.data.dimensions | dump | safe }}, image: {{ work.data.image | dump | safe }}, url: {{ work.url | dump | safe }} },
+    {% endfor %}
+    {% for work in collections.drawings %}
+    { title: {{ work.data.title | dump | safe }}, year: {{ work.data.year }}, medium: {{ work.data.medium | dump | safe }}, dimensions: {{ work.data.dimensions | dump | safe }}, image: {{ work.data.image | dump | safe }}, url: {{ work.url | dump | safe }} },
+    {% endfor %}
+  ];
+
+  // Pick one based on 48-hour cycle
+  var cycle = Math.floor(Date.now() / (48 * 60 * 60 * 1000));
+  var index = cycle % works.length;
+  var w = works[index];
+
+  document.getElementById('featured-link').href = w.url;
+  var img = document.getElementById('featured-img');
+  img.src = w.image;
+  img.alt = w.title + ', ' + w.year + ' — ' + w.medium;
+  document.getElementById('featured-title').innerHTML = '<strong>' + w.title + '</strong>, ' + w.year;
+  document.getElementById('featured-medium').textContent = w.medium;
+
+  var dimRow = document.getElementById('featured-dimensions-row');
+  if (w.dimensions) {
+    document.getElementById('featured-dimensions').textContent = w.dimensions;
+    dimRow.style.display = '';
+  } else {
+    dimRow.style.display = 'none';
+  }
+})();
+</script>
 
 <!-- Lightbox -->
 <div class="lightbox" id="lightbox">
