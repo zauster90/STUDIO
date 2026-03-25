@@ -307,6 +307,7 @@ app.use((req, res, next) => {
 });
 
 const PORT = process.env.ADMIN_PORT || 4404;
-app.listen(PORT, () => {
-  console.log(`\n  Admin CMS running at http://localhost:${PORT}\n`);
+const HOST = process.env.ADMIN_HOST || '0.0.0.0';
+app.listen(PORT, HOST, () => {
+  console.log(`\n  Admin CMS running at http://${HOST}:${PORT}\n`);
 });
