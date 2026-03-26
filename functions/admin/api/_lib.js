@@ -49,6 +49,22 @@ async function githubFetch(endpoint, method, body, env) {
   });
 }
 
+async function githubGraphQL(query, variables, env) {
+  const res = await fetch('https://api.github.com/graphql', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${env.GITHUB_TOKEN}`,
+      'Content-Type': 'application/json',
+      'User-Agent': 'STUDIO-Admin',
+    },
+    body: JSON.stringify({ query, variables }),
+  });
+  if (!res.ok) throw new Error(`GitHub GraphQL → ${res.status}`);
+  const json = await res.json();
+  if (json.errors) throw new Error(json.errors[0].message);
+  return json.data;
+}
+
 // ---------------------------------------------------------------------------
 // GitHub API helpers
 // ---------------------------------------------------------------------------
@@ -110,6 +126,38 @@ export async function listDir(path, env) {
   const data = await res.json();
   if (!Array.isArray(data)) return [];
   return data.map(item => ({ name: item.name, sha: item.sha, type: item.type }));
+}
+
+/**
+ * Fetch all files in a directory with their contents in a single GraphQL request.
+ * Returns [{ name, content }] for all files in the directory.
+ */
+export async function getDirContents(path, env) {
+  const [owner, repo] = env.GITHUB_REPO.split('/');
+  const expression = `${env.GITHUB_BRANCH}:${path}`;
+  const query = `
+    query($owner: String!, $repo: String!, $expression: String!) {
+      repository(owner: $owner, name: $repo) {
+        object(expression: $expression) {
+          ... on Tree {
+            entries {
+              name
+              object {
+                ... on Blob {
+                  text
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  `;
+  const data = await githubGraphQL(query, { owner, repo, expression }, env);
+  const entries = data?.repository?.object?.entries || [];
+  return entries
+    .filter(e => e.object?.text != null)
+    .map(e => ({ name: e.name, content: e.object.text }));
 }
 
 // ---------------------------------------------------------------------------

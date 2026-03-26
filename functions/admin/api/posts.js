@@ -1,16 +1,14 @@
-import { getFile, putFile, listDir, parseMarkdown, stringifyMarkdown, slugify } from './_lib.js';
+import { getFile, putFile, getDirContents, parseMarkdown, stringifyMarkdown, slugify } from './_lib.js';
 
 export async function onRequestGet(context) {
   const { env } = context;
   try {
-    const files = await listDir('src/content/posts', env);
+    const files = await getDirContents('src/content/posts', env);
     const posts = [];
     for (const file of files) {
       if (!file.name.endsWith('.md')) continue;
       const slug = file.name.slice(0, -3);
-      const result = await getFile(`src/content/posts/${file.name}`, env);
-      if (!result) continue;
-      const { data, body } = parseMarkdown(result.content);
+      const { data, body } = parseMarkdown(file.content);
       posts.push({ slug, ...data, body });
     }
     posts.sort((a, b) => new Date(b.date) - new Date(a.date));

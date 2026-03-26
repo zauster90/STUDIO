@@ -1,16 +1,14 @@
-import { getFile, putFile, listDir, parseMarkdown, stringifyMarkdown, slugify } from './_lib.js';
+import { getFile, putFile, getDirContents, parseMarkdown, stringifyMarkdown, slugify } from './_lib.js';
 
 export async function onRequestGet(context) {
   const { env } = context;
   try {
-    const files = await listDir('src/content/works', env);
+    const files = await getDirContents('src/content/works', env);
     const works = [];
     for (const file of files) {
       if (!file.name.endsWith('.md')) continue;
       const slug = file.name.slice(0, -3);
-      const result = await getFile(`src/content/works/${file.name}`, env);
-      if (!result) continue;
-      const { data, body } = parseMarkdown(result.content);
+      const { data, body } = parseMarkdown(file.content);
       works.push({ slug, ...data, body });
     }
     return Response.json(works);
