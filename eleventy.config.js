@@ -30,7 +30,14 @@ export default function(eleventyConfig) {
   // Pass through static assets
   eleventyConfig.addPassthroughCopy("src/assets");
   eleventyConfig.addPassthroughCopy("src/images");
-  eleventyConfig.addPassthroughCopy("src/admin");
+
+  // Admin SPA — selective (excludes server.js / config.yml)
+  eleventyConfig.addPassthroughCopy({ "src/admin/index.html": "admin/index.html" });
+  eleventyConfig.addPassthroughCopy({ "src/admin/admin.js": "admin/admin.js" });
+  eleventyConfig.addPassthroughCopy({ "src/admin/admin.css": "admin/admin.css" });
+
+  // Cloudflare Pages routing — forces /admin/* through Functions
+  eleventyConfig.addPassthroughCopy({ "src/_routes.json": "_routes.json" });
 
   // Collections with custom ordering support
   eleventyConfig.addCollection("works", function(collectionApi) {

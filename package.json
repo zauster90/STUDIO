@@ -7,9 +7,9 @@
   },
   "scripts": {
     "dev": "eleventy --serve --port=4403",
-    "admin": "node src/admin/server.js",
     "build": "rm -rf _site && eleventy",
-    "clean": "rm -rf _site"
+    "clean": "rm -rf _site",
+    "reset-password": "node scripts/reset-password.js"
   },
   "keywords": [],
   "author": "",
@@ -20,8 +20,6 @@
     "markdown-it": "^14.1.1"
   },
   "dependencies": {
-    "express": "^5.2.1",
-    "gray-matter": "^4.0.3",
-    "multer": "^2.1.1"
+    "gray-matter": "^4.0.3"
   }
 }

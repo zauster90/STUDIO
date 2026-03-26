@@ -5,7 +5,7 @@ const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
 
 // --- API helpers ---
 async function api(path, opts = {}) {
-  const res = await fetch(`/api${path}`, {
+  const res = await fetch(`/admin/api${path}`, {
     headers: { 'Content-Type': 'application/json', ...opts.headers },
     ...opts,
     body: opts.body ? JSON.stringify(opts.body) : undefined,
@@ -87,7 +87,21 @@ function navigate() {
 }
 
 window.addEventListener('hashchange', navigate);
-window.addEventListener('load', navigate);
+window.addEventListener('load', () => {
+  // Inject logout button into sidebar footer
+  const footer = document.querySelector('.sidebar-footer');
+  if (footer) {
+    const btn = document.createElement('button');
+    btn.className = 'logout-btn';
+    btn.textContent = 'Logout';
+    btn.onclick = async () => {
+      await fetch('/admin/api/logout', { method: 'POST' }).catch(() => {});
+      location.href = '/admin/login';
+    };
+    footer.appendChild(btn);
+  }
+  navigate();
+});
 
 // --- Dashboard ---
 async function renderDashboard() {
@@ -740,7 +754,7 @@ async function uploadFile(file, onUpload) {
   const formData = new FormData();
   formData.append('image', file);
   try {
-    const res = await fetch('/api/upload', { method: 'POST', body: formData });
+    const res = await fetch('/admin/api/upload', { method: 'POST', body: formData });
     const data = await res.json();
     if (data.path) {
       onUpload(data.path);

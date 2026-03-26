@@ -1,0 +1,29 @@
+import { getFile, putFile } from './_lib.js';
+
+export async function onRequestGet(context) {
+  const { env } = context;
+  try {
+    const result = await getFile('src/_data/about.json', env);
+    if (!result) return Response.json({});
+    return Response.json(JSON.parse(result.content));
+  } catch (err) {
+    return Response.json({ error: err.message }, { status: 500 });
+  }
+}
+
+export async function onRequestPut(context) {
+  const { request, env } = context;
+  try {
+    const body = await request.json();
+    await putFile(
+      'src/_data/about.json',
+      JSON.stringify(body, null, 2) + '\n',
+      'Update about page',
+      null,
+      env,
+    );
+    return Response.json({ success: true });
+  } catch (err) {
+    return Response.json({ error: err.message }, { status: 500 });
+  }
+}
