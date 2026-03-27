@@ -25,7 +25,6 @@
   ],
   "drawing": [
     "verdict",
-    "blue-transit",
     "boundary",
     "collapse",
     "distention",
@@ -34,6 +33,7 @@
     "remnant-i",
     "remnant-ii",
     "river",
+    "blue-transit",
     "signal",
     "smoke",
     "transmission",
