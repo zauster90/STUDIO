@@ -1,5 +1,5 @@
 {
   "layout": "layouts/post.njk",
   "tags": "post",
-  "permalink": "/writing/{{ title | slugify }}/index.html"
+  "permalink": false
 }
