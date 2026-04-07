@@ -1,45 +1,191 @@
 {
   "bio": "Zach Miller is an artist based in Oklahoma City working primarily in painting, drawing, printmaking, and new media.",
   "artist_statement": [
-    "The act of making is always already an act of unmaking.",
-    "Through cyclical processes of creation and dissolution, my artwork carries the memory of its past forms, the same way existence is always shaped by what it has already lived and lost.",
-    "Artmaking is a process of perpetual becoming, never arrival. I work to embody the sense of manifestation and the ineffable quality of experience that language can only gesture toward. I work to keep the work alive.",
-    "The impossibility of fully expressing lived experience is not a failure but a productive condition — it forms the void that keeps the work moving.",
-    "My work operates in the gaps between meaning and form, presence and absence, order and entropy. The world must be continuously remade or it ceases to exist.",
-    "My artworks inhale and exhale. They ask not what reality is, but what it feels like to reach toward something that can never be fully held. That reaching is the work."
+    "The studio is a place of perpetual becoming, never arriving.",
+    "In the studio, I create gaps between meaning and form, presence and absence, order and entropy. The gaps inhale and exhale. They ask not what reality is, but what it feels like to reach toward something that can never be fully held."
   ],
   "education": [
-    { "degree": "MFA", "field": "Painting & Printmaking", "school": "Colorado State University", "year": 2018 },
-    { "degree": "BFA", "field": "Studio Art", "school": "Oklahoma State University", "year": 2013 }
+    {
+      "year": 2018,
+      "degree": "MFA",
+      "field": "Painting & Printmaking",
+      "school": "Colorado State University"
+    },
+    {
+      "year": 2013,
+      "degree": "BFA",
+      "field": "Studio Art",
+      "school": "Oklahoma State University"
+    }
   ],
   "exhibitions": [
-    { "year": 2024, "title": "TEK Fest", "venue": "First Americans Museum", "location": "Oklahoma City, OK" },
-    { "year": 2021, "title": "Cimarron National Works on Paper Biennial", "venue": "Gardiner Art Gallery, Oklahoma State University", "location": "Stillwater, OK", "type": "National Juried Exhibition: Larissa Goldston" },
-    { "year": 2019, "title": "Saigon Experimental Film Festival", "venue": "289E Nguyen Cong Tru", "location": "Saigon, Vietnam", "type": "International Juried Exhibition" },
-    { "year": 2018, "title": "Squares 2018", "venue": "CICA Museum", "location": "Gyeonggi-do, South Korea", "type": "International Juried Exhibition" },
-    { "year": 2018, "title": "VideoBardo: International Videopoetry Festival", "venue": "", "location": "Buenos Aires, Argentina", "type": "Juried Exhibition: Marina Formenko" },
-    { "year": 2018, "title": "The Water is Pure and Clear", "venue": "Group Global 3000", "location": "Berlin, Germany", "type": "International Juried Exhibition" },
-    { "year": 2018, "title": "Noetic Matters", "venue": "Capps Coppozollo Gallery CSU Pueblo", "location": "Pueblo, CO", "type": "Group Exhibition" },
-    { "year": 2018, "title": "MFA Thesis Exhibition", "venue": "Gregory Allicar Museum of Art", "location": "Fort Collins, CO", "type": "Group Exhibition" },
-    { "year": 2018, "title": "Ignite: Mo'Print", "venue": "Lincoln Center", "location": "Fort Collins, CO", "type": "Juried Exhibition: Melanie Yazze" },
-    { "year": 2018, "title": "Entanglements", "venue": "The Artery", "location": "Fort Collins, CO", "type": "Group Exhibition: Curated by Amy Bradley" },
-    { "year": 2017, "title": "Her Ritual", "venue": "The Merchant Room", "location": "Fort Collins, CO", "type": "Group Exhibition, Curated by Matthew Weiderspon" },
-    { "year": 2017, "title": "Towson MFA Exchange Exhibition", "venue": "Center for the Arts Gallery", "location": "Towson, MD", "type": "Group Exhibition" },
-    { "year": 2017, "title": "Spectrum National Printmaking Exhibition", "venue": "Cade Art Gallery", "location": "Arnold, MD", "type": "Juried Exhibition" },
-    { "year": 2017, "title": "Atlanta Print Biennial", "venue": "Kai Lin Art", "location": "Atlanta, GA", "type": "Juried Exhibition: Sydney Cross" },
-    { "year": 2017, "title": "Wheaton Biennial: Printmaking Reimagined", "venue": "Beard and Weil Galleries", "location": "Norton, MA", "type": "Juried Exhibition: Andrew Raftery" },
-    { "year": 2017, "title": "Art Now: Printmaking", "venue": "Ann Arbor Art Center", "location": "Ann Arbor, MI", "type": "Juried Exhibition: Tyanna Buie" },
-    { "year": 2017, "title": "528 Regional Juried Printmaking Exhibition", "venue": "Center for Visual Art Metro State Gallery", "location": "Denver, CO", "type": "Juried Exhibition" },
-    { "year": 2017, "title": "Convergence", "venue": "Cloyde Snook Gallery", "location": "Alamosa, CO", "type": "Group Show" },
-    { "year": 2016, "title": "Pirate Contemporary", "venue": "Pirate Contemporary Art", "location": "Denver, CO", "type": "Juried Exhibition: Dean Sobel" },
-    { "year": 2016, "title": "TVAA National Competition", "venue": "Mesquite Art Center", "location": "Mesquite, TX", "type": "Juried Exhibition: Gabriel Ritter & Andrea Karnes" },
-    { "year": 2016, "title": "2nd NY International Miniature Print Exhibition", "venue": "Manhattan Graphics Center", "location": "NY", "type": "Juried Exhibition: David Kiehl" },
-    { "year": 2016, "title": "Moira", "venue": "Capps Copozzolo Gallery", "location": "Pueblo, CO", "type": "Group Show" },
-    { "year": 2016, "title": "Press Play", "venue": "Lincoln Center", "location": "Fort Collins, CO", "type": "Juried Exhibition: Mark Lunning" },
-    { "year": 2016, "title": "On Edge", "venue": "Edge Gallery", "location": "Denver, CO", "type": "Juried Exhibition: Dean Sobel" },
-    { "year": 2016, "title": "Icebreaker 7", "venue": "Ice Cube Gallery", "location": "Denver, CO", "type": "National Juried Exhibition: Ivar Zeile" },
-    { "year": 2015, "title": "Invisible Museum 528", "venue": "Redline Gallery", "location": "Denver, CO", "type": "Juried Exhibition" },
-    { "year": 2014, "title": "Momentum", "venue": "Living Arts Center", "location": "Tulsa, OK", "type": "Juried Exhibition" },
-    { "year": 2014, "title": "Oklahoma State University Juried Exhibition", "venue": "Gardiner Art Gallery", "location": "Stillwater, OK", "type": "Juried Exhibition" }
+    {
+      "year": 2024,
+      "title": "TEK Fest",
+      "venue": "First Americans Museum",
+      "location": "Oklahoma City, OK"
+    },
+    {
+      "year": 2021,
+      "title": "Cimarron National Works on Paper Biennial",
+      "venue": "Gardiner Art Gallery, Oklahoma State University",
+      "location": "Stillwater, OK"
+    },
+    {
+      "year": 2019,
+      "title": "Saigon Experimental Film Festival",
+      "venue": "289E Nguyen Cong Tru",
+      "location": "Saigon, Vietnam"
+    },
+    {
+      "year": 2018,
+      "title": "Squares 2018",
+      "venue": "CICA Museum",
+      "location": "Gyeonggi-do, South Korea"
+    },
+    {
+      "year": 2018,
+      "title": "VideoBardo: International Videopoetry Festival",
+      "venue": "",
+      "location": "Buenos Aires, Argentina"
+    },
+    {
+      "year": 2018,
+      "title": "The Water is Pure and Clear",
+      "venue": "Group Global 3000",
+      "location": "Berlin, Germany"
+    },
+    {
+      "year": 2018,
+      "title": "Noetic Matters",
+      "venue": "Capps Coppozollo Gallery CSU Pueblo",
+      "location": "Pueblo, CO"
+    },
+    {
+      "year": 2018,
+      "title": "MFA Thesis Exhibition",
+      "venue": "Gregory Allicar Museum of Art",
+      "location": "Fort Collins, CO"
+    },
+    {
+      "year": 2018,
+      "title": "Ignite: Mo'Print",
+      "venue": "Lincoln Center",
+      "location": "Fort Collins, CO"
+    },
+    {
+      "year": 2018,
+      "title": "Entanglements",
+      "venue": "The Artery",
+      "location": "Fort Collins, CO"
+    },
+    {
+      "year": 2017,
+      "title": "Her Ritual",
+      "venue": "The Merchant Room",
+      "location": "Fort Collins, CO"
+    },
+    {
+      "year": 2017,
+      "title": "Towson MFA Exchange Exhibition",
+      "venue": "Center for the Arts Gallery",
+      "location": "Towson, MD"
+    },
+    {
+      "year": 2017,
+      "title": "Spectrum National Printmaking Exhibition",
+      "venue": "Cade Art Gallery",
+      "location": "Arnold, MD"
+    },
+    {
+      "year": 2017,
+      "title": "Atlanta Print Biennial",
+      "venue": "Kai Lin Art",
+      "location": "Atlanta, GA"
+    },
+    {
+      "year": 2017,
+      "title": "Wheaton Biennial: Printmaking Reimagined",
+      "venue": "Beard and Weil Galleries",
+      "location": "Norton, MA"
+    },
+    {
+      "year": 2017,
+      "title": "Art Now: Printmaking",
+      "venue": "Ann Arbor Art Center",
+      "location": "Ann Arbor, MI"
+    },
+    {
+      "year": 2017,
+      "title": "528 Regional Juried Printmaking Exhibition",
+      "venue": "Center for Visual Art Metro State Gallery",
+      "location": "Denver, CO"
+    },
+    {
+      "year": 2017,
+      "title": "Convergence",
+      "venue": "Cloyde Snook Gallery",
+      "location": "Alamosa, CO"
+    },
+    {
+      "year": 2016,
+      "title": "Pirate Contemporary",
+      "venue": "Pirate Contemporary Art",
+      "location": "Denver, CO"
+    },
+    {
+      "year": 2016,
+      "title": "TVAA National Competition",
+      "venue": "Mesquite Art Center",
+      "location": "Mesquite, TX"
+    },
+    {
+      "year": 2016,
+      "title": "2nd NY International Miniature Print Exhibition",
+      "venue": "Manhattan Graphics Center",
+      "location": "NY"
+    },
+    {
+      "year": 2016,
+      "title": "Moira",
+      "venue": "Capps Copozzolo Gallery",
+      "location": "Pueblo, CO"
+    },
+    {
+      "year": 2016,
+      "title": "Press Play",
+      "venue": "Lincoln Center",
+      "location": "Fort Collins, CO"
+    },
+    {
+      "year": 2016,
+      "title": "On Edge",
+      "venue": "Edge Gallery",
+      "location": "Denver, CO"
+    },
+    {
+      "year": 2016,
+      "title": "Icebreaker 7",
+      "venue": "Ice Cube Gallery",
+      "location": "Denver, CO"
+    },
+    {
+      "year": 2015,
+      "title": "Invisible Museum 528",
+      "venue": "Redline Gallery",
+      "location": "Denver, CO"
+    },
+    {
+      "year": 2014,
+      "title": "Momentum",
+      "venue": "Living Arts Center",
+      "location": "Tulsa, OK"
+    },
+    {
+      "year": 2014,
+      "title": "Oklahoma State University Juried Exhibition",
+      "venue": "Gardiner Art Gallery",
+      "location": "Stillwater, OK"
+    }
   ]
 }
