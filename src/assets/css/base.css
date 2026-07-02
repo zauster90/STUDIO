@@ -13,12 +13,12 @@ ul, ol { list-style: none; }
 
 /* ── Tokens ── */
 :root {
-  --bg:         #fafafa;
-  --ink:        #111111;
-  --ink-mid:    #3d3d3d;
-  --ink-dim:    #777777;
-  --rule:       #cccccc;
-  --rule-light: #e8e8e8;
+  --bg:         #ffffff;
+  --ink:        #1a1a1a;
+  --ink-mid:    #444444;
+  --ink-dim:    #8a8a8a;
+  --rule:       #dddddd;
+  --rule-light: #ededed;
   --accent:     #1a3a5c;
   --white:      #ffffff;
 
@@ -29,12 +29,12 @@ ul, ol { list-style: none; }
   --t-fast: 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   --t-base: 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 
-  --sidebar-w:    260px;
-  --pad-top:      80px;
+  --sidebar-w:    300px;
+  --pad-top:      96px;
   --pad-bottom:   80px;
-  --pad-x:        24px;
-  --grid-gap:     30px;
-  --section-gap:  3rem;
+  --pad-x:        48px;
+  --grid-gap:     48px;
+  --section-gap:  5rem;
 }
 
 /* ── Body ── */

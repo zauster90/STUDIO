@@ -7,119 +7,103 @@
    GALLERY GRID
 ══════════════════════════════════════════════════════════ */
 .gallery-header {
-  margin-bottom: 0.75rem;
+  margin-bottom: 2rem;
 }
 .gallery-title {
   font-family: var(--font-sans);
-  font-weight: 900;
-  font-style: italic;
-  font-size: 1.2rem;
-  letter-spacing: 0.08em;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--ink);
 }
 .gallery-count {
   font-family: var(--font-mono);
-  font-size: 0.55rem;
+  font-size: 0.58rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--ink-dim);
-  margin-left: 0.5rem;
+  margin-left: 0.75rem;
 }
 
 .gallery-header--featured {
   text-align: center;
 }
-.gallery-header--featured .gallery-title {
-  font-size: 0.96rem;
-}
 
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(192px, 1fr));
-  gap: var(--grid-gap);
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 3.5rem var(--grid-gap);
 }
 .gallery-grid--large {
-  grid-template-columns: repeat(auto-fill, minmax(288px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 }
 
 .gallery-item {
   position: relative;
-  overflow: hidden;
   text-decoration: none;
   background: var(--bg);
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
 }
 .gallery-item img {
   width: 100%;
   height: auto;
   object-fit: contain;
   display: block;
-  filter: saturate(0.88);
-  transition: filter var(--t-base), transform 0.5s var(--ease);
+  transition: opacity var(--t-base);
 }
 .gallery-item:hover img {
-  filter: saturate(1);
-  transform: scale(1.03);
+  opacity: 0.92;
 }
 
-/* Hover overlay */
+/* Wall label beneath each work */
 .gallery-item .gallery-overlay {
-  position: absolute;
-  inset: 0;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 0.7rem;
-  background: linear-gradient(0deg, rgba(0,0,0,0.7) 0%, transparent 55%);
-  opacity: 0;
-  transition: opacity var(--t-base);
-  pointer-events: none;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.8rem 0 0;
 }
-.gallery-item:hover .gallery-overlay { opacity: 1; }
 
 .gallery-overlay-title {
   font-family: var(--font-sans);
-  font-weight: 600;
-  font-size: 0.7rem;
-  letter-spacing: 0.04em;
+  font-weight: 500;
+  font-size: 0.76rem;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--white);
+  color: var(--ink);
   line-height: 1.3;
 }
 .gallery-overlay-year {
   font-family: var(--font-mono);
-  font-size: 0.52rem;
-  color: rgba(255,255,255,0.7);
+  font-size: 0.6rem;
+  color: var(--ink-dim);
   letter-spacing: 0.08em;
-  margin-top: 0.1rem;
 }
 
 /* Mobile gallery: single column with clear gaps */
 @media (max-width: 480px) {
-  .gallery-grid {
+  .gallery-grid,
+  .gallery-grid--large {
     grid-template-columns: 1fr;
-    gap: 30px;
+    gap: 2.5rem;
   }
 }
 
 /* Video in gallery — square format with autoplay */
-.gallery-item[data-category="new-media"] {
-  aspect-ratio: 1;
-}
-.gallery-item video {
+.gallery-item[data-category="new-media"] video {
   width: 100%;
-  height: 100%;
+  aspect-ratio: 1;
   object-fit: cover;
   pointer-events: none;
-  filter: saturate(0.88);
-  transition: filter var(--t-base), transform 0.5s var(--ease);
+  transition: opacity var(--t-base);
 }
 .gallery-item:hover video {
-  filter: saturate(1);
-  transform: scale(1.03);
+  opacity: 0.92;
 }
 
 /* ══════════════════════════════════════════════════════════
@@ -146,10 +130,7 @@
   height: auto;
   display: block;
   cursor: pointer;
-  transition: filter var(--t-base);
-  filter: saturate(0.92);
 }
-.featured-image-wrap img:hover { filter: saturate(1); }
 
 .featured-meta {
   display: flex;
@@ -221,10 +202,7 @@
   height: auto;
   display: block;
   cursor: zoom-in;
-  transition: filter var(--t-base);
-  filter: saturate(0.92);
 }
-.work-image-wrap img:hover { filter: saturate(1); }
 
 .work-meta {
   display: flex;
@@ -446,10 +424,9 @@
 /* Exhibition Record */
 .exhibition-title {
   font-family: var(--font-sans);
-  font-weight: 900;
-  font-style: italic;
-  font-size: 1.2rem;
-  letter-spacing: 0.08em;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--ink);
   margin-bottom: 1.5rem;
@@ -511,10 +488,9 @@
 /* Section headings (Artist Statement, Education) — matches gallery/exhibition titles */
 .section-heading {
   font-family: var(--font-sans);
-  font-weight: 900;
-  font-style: italic;
-  font-size: 1.2rem;
-  letter-spacing: 0.08em;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--ink);
   margin-bottom: 1rem;
@@ -713,24 +689,6 @@ details[open] .cv-toggle::after { content: '\2212'; color: var(--ink); }
   transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
 }
 [data-reveal].revealed { opacity: 1; transform: translateY(0); }
-
-/* ══════════════════════════════════════════════════════════
-   GRADIENT FIELD (background atmosphere)
-══════════════════════════════════════════════════════════ */
-.gradient-field {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  overflow: hidden;
-  opacity: 0.25;
-}
-.gradient {
-  position: absolute;
-  border-radius: 50%;
-  will-change: filter;
-  transition: filter 0.6s var(--ease);
-}
 
 /* ══════════════════════════════════════════════════════════
    SECTION PRIMITIVES
