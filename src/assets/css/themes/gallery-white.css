@@ -1,0 +1,170 @@
+/* ═══════════════════════════════════════════════════════════
+   THEME A — GALLERY WHITE
+   Museum-quiet. Serif display, pure white field, hairline
+   rules, captions set beneath the work like wall labels.
+═══════════════════════════════════════════════════════════ */
+
+:root {
+  --bg:         #ffffff;
+  --ink:        #1a1a1a;
+  --ink-mid:    #444444;
+  --ink-dim:    #8a8a8a;
+  --rule:       #dddddd;
+  --rule-light: #ededed;
+  --accent:     #8a7350;
+
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+
+  --grid-gap:    48px;
+  --section-gap: 5rem;
+  --pad-top:     96px;
+  --pad-x:       48px;
+  --sidebar-w:   300px;
+}
+
+body { background: var(--bg); }
+
+/* Quiet the atmosphere entirely — white wall */
+.gradient-field { display: none; }
+
+/* ── Identity: serif, lowercase-elegant ── */
+.site-name {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 2rem;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  -webkit-text-stroke: 0;
+  line-height: 1.2;
+}
+
+/* ── Nav: small caps, hairline discipline ── */
+.nav-item {
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  color: var(--ink-dim);
+  padding: 0.55rem 0;
+}
+.nav-item:hover,
+.nav-item.active { color: var(--ink); font-weight: 500; }
+.nav-subitem {
+  font-style: normal;
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  padding-left: 1.1rem;
+}
+.nav-subitem:hover { color: var(--ink); }
+
+.sidebar { padding-right: 2.5rem; }
+.sidebar-footer { font-size: 0.58rem; letter-spacing: 0.16em; }
+.insta-icon { opacity: 0.55; }
+.insta-icon:hover { opacity: 1; color: var(--ink); }
+
+/* ── Section titles: italic serif, like a room card ── */
+.gallery-title,
+.section-heading,
+.exhibition-title {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-style: italic;
+  font-size: 1.7rem;
+  letter-spacing: 0.02em;
+  text-transform: none;
+}
+.gallery-header { margin-bottom: 2rem; }
+.gallery-count { font-size: 0.58rem; margin-left: 0.75rem; }
+.gallery-header--featured .gallery-title { font-size: 1.7rem; }
+
+/* ── Gallery: work + wall label ── */
+.gallery-grid,
+.gallery-grid--large {
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 3.5rem var(--grid-gap);
+}
+.gallery-item {
+  flex-direction: column;
+  align-items: stretch;
+  overflow: visible;
+  background: none;
+}
+.gallery-item img { filter: none; }
+.gallery-item:hover img { transform: none; opacity: 0.92; }
+
+/* Overlay becomes a static wall label under the work */
+.gallery-item .gallery-overlay {
+  position: static;
+  opacity: 1;
+  background: none;
+  padding: 0.8rem 0 0;
+  pointer-events: auto;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.gallery-overlay-title {
+  color: var(--ink);
+  font-weight: 400;
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+}
+.gallery-overlay-year {
+  color: var(--ink-dim);
+  font-size: 0.6rem;
+  margin-top: 0;
+}
+.gallery-item[data-category="new-media"] { aspect-ratio: auto; }
+.gallery-item[data-category="new-media"] video { aspect-ratio: 1; filter: none; }
+
+/* ── Featured work (home) ── */
+.featured-work { gap: 1.75rem; }
+.featured-image-wrap img { filter: none; }
+.work-meta { gap: 0.3rem 2.5rem; }
+.work-meta-key { color: var(--ink-dim); font-size: 0.52rem; letter-spacing: 0.2em; }
+.work-meta-val { font-family: var(--font-serif); font-size: 1.05rem; font-weight: 500; }
+.work-meta-val strong { font-weight: 600; font-style: italic; }
+
+/* ── Work detail ── */
+.work-image-wrap img { filter: none; }
+.back-link { color: var(--ink-dim); }
+.work-statement p {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  line-height: 1.85;
+}
+
+/* ── About ── */
+.about-statement p,
+.exhibition-entry,
+.artist-statement p {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  line-height: 1.8;
+}
+.about-statement p:first-child { font-size: 1.25rem; font-weight: 500; }
+.artist-statement { border-left: 1px solid var(--rule); }
+.artist-statement p:first-child { font-size: 1.2rem; font-weight: 600; }
+.exhibition-year { font-family: var(--font-serif); font-weight: 600; }
+.exhibition-entry strong { font-weight: 600; }
+.cv-section { margin-top: 4rem; }
+
+/* ── Contact ── */
+.contact-intro { font-family: var(--font-serif); font-size: 1.15rem; }
+.form-input, .form-textarea { font-family: var(--font-serif); font-size: 1.05rem; }
+.btn { border-color: var(--ink); color: var(--ink); }
+.btn:hover { background: var(--ink); color: #fff; }
+
+/* ── Writing ── */
+.post-title { font-family: var(--font-serif); font-weight: 600; font-size: 1.4rem; letter-spacing: 0; }
+.post-excerpt { font-size: 0.9rem; }
+
+::selection { background: var(--ink); color: #fff; }
+
+/* ── Mobile refinements ── */
+@media (max-width: 768px) {
+  :root { --pad-x: 20px; --section-gap: 3rem; }
+  .site-name { font-size: 1.45rem; }
+  .gallery-grid, .gallery-grid--large { gap: 2.5rem 24px; }
+}

@@ -11,6 +11,21 @@
   <link rel="stylesheet" href="/assets/css/base.css">
   <link rel="stylesheet" href="/assets/css/layout.css">
   <link rel="stylesheet" href="/assets/css/components.css">
+  <script>
+  /* Design-review theme preview: ?theme=<name> loads /assets/css/themes/<name>.css
+     and persists across pages; ?theme=current resets. */
+  (function () {
+    try {
+      var m = location.search.match(/[?&]theme=([\w-]+)/);
+      if (m) {
+        if (m[1] === 'current') sessionStorage.removeItem('preview-theme');
+        else sessionStorage.setItem('preview-theme', m[1]);
+      }
+      var t = sessionStorage.getItem('preview-theme');
+      if (t) document.write('<link rel="stylesheet" href="/assets/css/themes/' + t + '.css">');
+    } catch (e) {}
+  })();
+  </script>
 </head>
 <body>
 

@@ -1,0 +1,197 @@
+/* ═══════════════════════════════════════════════════════════
+   THEME C — EDITORIAL
+   Broadsheet energy. Full-width masthead, horizontal nav,
+   warm paper ground, strong black rules, vermilion accent.
+═══════════════════════════════════════════════════════════ */
+
+:root {
+  --bg:         #f5f3ee;
+  --ink:        #141414;
+  --ink-mid:    #3a3a3a;
+  --ink-dim:    #767268;
+  --rule:       #141414;
+  --rule-light: #d8d4ca;
+  --accent:     #c73e1d;
+
+  --grid-gap:    36px;
+  --section-gap: 4.5rem;
+  --pad-x:       40px;
+  --pad-top:     48px;
+}
+
+body { background: var(--bg); }
+.gradient-field { display: none; }
+
+/* ══════════════════════════════════════════════════════════
+   DESKTOP: sidebar becomes a masthead + horizontal nav
+══════════════════════════════════════════════════════════ */
+@media (min-width: 769px) {
+  .page { flex-direction: column; }
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+    flex-direction: column;
+    padding: 2.2rem var(--pad-x) 0;
+    overflow: visible;
+  }
+
+  .sidebar-header {
+    margin-bottom: 1.4rem;
+    align-items: baseline;
+    width: 100%;
+  }
+  .sidebar-identity {
+    flex-direction: row;
+    align-items: baseline;
+    gap: 1.25rem;
+    width: 100%;
+  }
+  .insta-icon { margin-top: 0; align-self: center; }
+
+  .nav-collapse {
+    flex-direction: row;
+    align-items: baseline;
+    gap: 2.2rem;
+    width: 100%;
+    padding: 0.85rem 0;
+    border-top: 3px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+  }
+  .nav-item { padding: 0; }
+  .nav-submenu {
+    flex-direction: row;
+    gap: 1.4rem;
+    margin: 0;
+    align-items: baseline;
+  }
+  .nav-subitem { padding: 0; }
+
+  .sidebar-footer {
+    display: none;
+  }
+
+  .main { padding-top: 3rem; }
+}
+
+/* ── Masthead type ── */
+.site-name {
+  font-weight: 800;
+  font-size: 3.4rem;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  -webkit-text-stroke: 0;
+}
+
+.nav-item {
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: var(--ink);
+}
+.nav-item:hover { color: var(--accent); }
+.nav-item.active { color: var(--accent); }
+.nav-subitem {
+  font-style: normal;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  color: var(--ink-dim);
+}
+.nav-subitem:hover { color: var(--accent); }
+
+/* ── Section headers: index numbers + heavy rules ── */
+.gallery-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  border-bottom: 3px solid var(--ink);
+  padding-bottom: 0.6rem;
+  margin-bottom: 2rem;
+}
+.gallery-title {
+  font-style: normal;
+  font-weight: 800;
+  font-size: 2rem;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+}
+.gallery-count {
+  font-size: 0.62rem;
+  color: var(--accent);
+  letter-spacing: 0.2em;
+}
+.gallery-header--featured { border-bottom: none; text-align: left; }
+.gallery-header--featured .gallery-title { font-size: 2rem; }
+
+.section-heading, .exhibition-title {
+  font-style: normal;
+  font-weight: 800;
+  font-size: 1.5rem;
+  letter-spacing: -0.01em;
+}
+
+/* ── Gallery: flat grid, captions as an index line ── */
+.gallery-grid, .gallery-grid--large { gap: 3rem var(--grid-gap); }
+.gallery-item {
+  flex-direction: column;
+  align-items: stretch;
+  overflow: visible;
+  background: none;
+}
+.gallery-item img, .gallery-item video { filter: none; }
+.gallery-item:hover img, .gallery-item:hover video { transform: none; opacity: 0.9; }
+
+.gallery-item .gallery-overlay {
+  position: static;
+  opacity: 1;
+  background: none;
+  padding: 0.65rem 0 0;
+  pointer-events: auto;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 0.75rem;
+  border-top: 1px solid var(--ink);
+  margin-top: 0.75rem;
+}
+.gallery-overlay-title {
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+}
+.gallery-overlay-year {
+  color: var(--accent);
+  font-size: 0.6rem;
+  margin-top: 0;
+}
+.gallery-item[data-category="new-media"] { aspect-ratio: auto; }
+.gallery-item[data-category="new-media"] video { aspect-ratio: 1; }
+
+/* ── Featured / detail meta ── */
+.featured-image-wrap img, .work-image-wrap img { filter: none; }
+.work-meta { border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); }
+.work-meta-key { color: var(--accent); }
+.work-meta-val strong { font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; }
+.back-link:hover { color: var(--accent); }
+
+/* ── About ── */
+.artist-statement { border-left: 3px solid var(--accent); font-style: normal; }
+.exhibition-year { font-weight: 800; }
+.btn { color: var(--ink); border: 2px solid var(--ink); font-weight: 700; }
+.btn:hover { background: var(--ink); color: var(--bg); }
+
+/* ── Writing ── */
+.post-title { font-weight: 800; }
+.post-tag { color: var(--accent); border-color: var(--accent); }
+
+::selection { background: var(--accent); color: #fff; }
+
+/* ── Mobile: keep stock top-bar pattern, editorial type ── */
+@media (max-width: 768px) {
+  .site-name { font-size: 1.5rem; letter-spacing: 0; }
+  .sidebar { border-bottom: 3px solid var(--ink); }
+  .gallery-title { font-size: 1.4rem; }
+  .gallery-grid, .gallery-grid--large { gap: 2.5rem 24px; }
+}

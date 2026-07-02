@@ -1,10 +1,11 @@
-/* === Admin SPA === */
+/* === Admin SPA — Studio Manager === */
 
 const $ = (sel, ctx = document) => ctx.querySelector(sel);
 const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
 
 // --- API helpers ---
 async function api(path, opts = {}) {
+  if (window.__mockApi) return window.__mockApi(path, opts);
   const res = await fetch(`/admin/api${path}`, {
     headers: { 'Content-Type': 'application/json', ...opts.headers },
     ...opts,
@@ -33,22 +34,21 @@ function toast(message, type = 'success') {
 
 // --- Router ---
 const routes = {
-  '/': renderDashboard,
-  '/works': renderWorks,
-  '/works/new': renderWorkEditor,
-  '/works/:slug': renderWorkEditor,
-  '/posts': renderPosts,
-  '/posts/new': renderPostEditor,
-  '/posts/:slug': renderPostEditor,
-  '/about': renderAbout,
+  '/': { handler: renderDashboard, crumb: 'Dashboard' },
+  '/works': { handler: renderWorks, crumb: 'Works' },
+  '/works/new': { handler: renderWorkEditor, crumb: 'Works / New' },
+  '/works/:slug': { handler: renderWorkEditor, crumb: 'Works / Edit' },
+  '/images': { handler: renderImages, crumb: 'Image Library' },
+  '/posts': { handler: renderPosts, crumb: 'Reflections' },
+  '/posts/new': { handler: renderPostEditor, crumb: 'Reflections / New' },
+  '/posts/:slug': { handler: renderPostEditor, crumb: 'Reflections / Edit' },
+  '/about': { handler: renderAbout, crumb: 'About Page' },
 };
 
 function matchRoute(hash) {
   const path = hash.replace('#', '') || '/';
-  // Exact match
-  if (routes[path]) return { handler: routes[path], params: {} };
-  // Parameterized match
-  for (const [pattern, handler] of Object.entries(routes)) {
+  if (routes[path]) return { route: routes[path], params: {} };
+  for (const [pattern, route] of Object.entries(routes)) {
     const parts = pattern.split('/');
     const pathParts = path.split('/');
     if (parts.length !== pathParts.length) continue;
@@ -62,34 +62,44 @@ function matchRoute(hash) {
         break;
       }
     }
-    if (match) return { handler, params };
+    if (match) return { route, params };
   }
-  return { handler: renderDashboard, params: {} };
+  return { route: routes['/'], params: {} };
 }
 
 let currentEasyMDE = null;
 
 function navigate() {
-  // Destroy EasyMDE if active
   if (currentEasyMDE) {
     currentEasyMDE.toTextArea();
     currentEasyMDE = null;
   }
 
-  const { handler, params } = matchRoute(location.hash);
-  handler(params);
+  const { route, params } = matchRoute(location.hash);
+  const crumbEl = $('#crumb');
+  if (crumbEl) crumbEl.textContent = route.crumb;
+  const actions = $('#topbar-actions');
+  if (actions) actions.innerHTML = '';
+  closeRail();
+  route.handler(params);
 
-  // Update active nav
   const page = location.hash.replace('#/', '').split('/')[0] || 'dashboard';
   $$('.nav-link').forEach(link => {
     link.classList.toggle('active', link.dataset.page === page);
   });
 }
 
+// --- Mobile rail ---
+function closeRail() {
+  const rail = $('#rail');
+  const toggle = $('#rail-toggle');
+  if (rail) rail.classList.remove('open');
+  if (toggle) toggle.setAttribute('aria-expanded', 'false');
+}
+
 window.addEventListener('hashchange', navigate);
 window.addEventListener('load', () => {
-  // Inject logout button into sidebar footer
-  const footer = document.querySelector('.sidebar-footer');
+  const footer = $('.rail-footer');
   if (footer) {
     const btn = document.createElement('button');
     btn.className = 'logout-btn';
@@ -100,53 +110,87 @@ window.addEventListener('load', () => {
     };
     footer.appendChild(btn);
   }
+
+  const toggle = $('#rail-toggle');
+  if (toggle) {
+    toggle.onclick = () => {
+      const rail = $('#rail');
+      const open = rail.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', String(open));
+    };
+    document.addEventListener('click', (e) => {
+      const rail = $('#rail');
+      if (rail.classList.contains('open') && !rail.contains(e.target) && !toggle.contains(e.target)) {
+        closeRail();
+      }
+    });
+  }
+
   navigate();
 });
+
+const CATEGORIES = [
+  { key: 'painting', label: 'Painting' },
+  { key: 'drawing', label: 'Drawing & Print' },
+  { key: 'new-media', label: 'New Media' },
+];
 
 // --- Dashboard ---
 async function renderDashboard() {
   const content = $('#content');
-  content.innerHTML = '<div class="loading">Loading...</div>';
+  content.innerHTML = '<div class="loading">Loading</div>';
 
   try {
-    const [works, posts] = await Promise.all([api('/works'), api('/posts')]);
-    const paintings = works.filter(w => w.category === 'painting');
-    const drawings = works.filter(w => w.category === 'drawing');
-    const newMedia = works.filter(w => w.category === 'new-media');
+    const [works, posts, order] = await Promise.all([api('/works'), api('/posts'), api('/order')]);
+    const counts = CATEGORIES.map(c => ({
+      ...c,
+      n: works.filter(w => w.category === c.key).length,
+    }));
+    const recent = CATEGORIES.flatMap(c =>
+      sortByOrder(works.filter(w => w.category === c.key), order[c.key] || [])
+    ).filter(w => w.image).slice(0, 12);
 
     content.innerHTML = `
       <div class="page-header">
         <h2>Dashboard</h2>
+        <span class="header-note">Studio overview</span>
       </div>
       <div class="stats-grid">
-        <div class="stat-card">
+        <a href="#/works" class="stat-card">
           <div class="stat-number">${works.length}</div>
           <div class="stat-label">Total Works</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-number">${paintings.length}</div>
-          <div class="stat-label">Paintings</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-number">${drawings.length}</div>
-          <div class="stat-label">Drawings &amp; Prints</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-number">${newMedia.length}</div>
-          <div class="stat-label">New Media</div>
-        </div>
-        <div class="stat-card">
+        </a>
+        ${counts.map(c => `
+          <a href="#/works" class="stat-card">
+            <div class="stat-number">${c.n}</div>
+            <div class="stat-label">${c.label}</div>
+          </a>
+        `).join('')}
+        <a href="#/posts" class="stat-card">
           <div class="stat-number">${posts.length}</div>
           <div class="stat-label">Reflections</div>
-        </div>
+        </a>
       </div>
+
       <div class="page-header">
-        <h2>Recent Posts</h2>
-        <a href="#/posts/new" class="btn btn-primary">+ New Post</a>
+        <h2>Portfolio Order</h2>
+        <a href="#/works" class="btn btn-sm btn-secondary">Manage Works</a>
+      </div>
+      <div class="dash-thumbs">
+        ${recent.map(w => `
+          <a href="#/works/${esc(w.slug)}" class="dash-thumb" title="${esc(w.title)}">
+            <img src="${esc(w.image)}" alt="${esc(w.title)}" loading="lazy">
+          </a>
+        `).join('')}
+      </div>
+
+      <div class="page-header">
+        <h2>Recent Reflections</h2>
+        <a href="#/posts/new" class="btn btn-sm btn-primary">+ New Post</a>
       </div>
       <div class="posts-list">
         ${posts.slice(0, 5).map(p => `
-          <a href="#/posts/${p.slug}" class="post-row" style="text-decoration:none;color:inherit">
+          <a href="#/posts/${p.slug}" class="post-row">
             <span class="post-date">${formatDate(p.date)}</span>
             <span class="post-title">${esc(p.title)}</span>
             <span class="post-tags">${(p.tags || []).map(t => `<span class="tag">${esc(t)}</span>`).join('')}</span>
@@ -162,22 +206,21 @@ async function renderDashboard() {
 // --- Works ---
 async function renderWorks() {
   const content = $('#content');
-  content.innerHTML = '<div class="loading">Loading works...</div>';
+  content.innerHTML = '<div class="loading">Loading works</div>';
 
   try {
     const [works, order] = await Promise.all([api('/works'), api('/order')]);
-    const categories = [
-      { key: 'painting', label: 'Painting' },
-      { key: 'drawing', label: 'Drawing & Print' },
-      { key: 'new-media', label: 'New Media' },
-    ];
 
     content.innerHTML = `
       <div class="page-header">
         <h2>Works</h2>
         <a href="#/works/new" class="btn btn-primary">+ New Work</a>
       </div>
-      ${categories.map(cat => {
+      <div class="works-toolbar">
+        <input type="search" class="search-input" id="works-search" placeholder="Filter by title, year, medium&hellip;">
+        <span class="toolbar-hint">Drag to reorder &middot; order saves automatically</span>
+      </div>
+      ${CATEGORIES.map(cat => {
         const catWorks = sortByOrder(
           works.filter(w => w.category === cat.key),
           order[cat.key] || []
@@ -196,7 +239,16 @@ async function renderWorks() {
       }).join('')}
     `;
 
-    // Initialize SortableJS on each category grid
+    // Live filter
+    $('#works-search').oninput = (e) => {
+      const q = e.target.value.toLowerCase().trim();
+      $$('.work-card').forEach(card => {
+        card.style.display = !q || card.dataset.search.includes(q) ? '' : 'none';
+      });
+    };
+
+    // Drag to reorder (progressive enhancement — CDN may be unavailable)
+    if (!window.Sortable) return;
     $$('.works-grid').forEach(grid => {
       new Sortable(grid, {
         animation: 200,
@@ -217,9 +269,11 @@ function workCard(w) {
   const thumb = w.image
     ? `<img class="card-thumb" src="${esc(w.image)}" alt="${esc(w.title)}" loading="lazy">`
     : `<div class="card-thumb-placeholder">No image</div>`;
+  const search = esc([w.title, w.year, w.medium].filter(Boolean).join(' ').toLowerCase());
   return `
-    <div class="work-card" data-slug="${esc(w.slug)}">
+    <div class="work-card" data-slug="${esc(w.slug)}" data-search="${search}">
       ${thumb}
+      ${w.featured ? '<span class="card-flag">Featured</span>' : ''}
       <div class="card-info">
         <div class="card-title">${esc(w.title)}</div>
         <div class="card-year">${w.year || ''}</div>
@@ -261,7 +315,7 @@ async function renderWorkEditor(params) {
   };
 
   if (!isNew) {
-    content.innerHTML = '<div class="loading">Loading...</div>';
+    content.innerHTML = '<div class="loading">Loading</div>';
     try {
       work = await api(`/works/${params.slug}`);
     } catch {
@@ -272,62 +326,72 @@ async function renderWorkEditor(params) {
 
   content.innerHTML = `
     <div class="page-header">
-      <h2>${isNew ? 'New Work' : `Edit: ${esc(work.title)}`}</h2>
-      <a href="#/works" class="btn btn-secondary">Back to Works</a>
+      <h2>${isNew ? 'New Work' : esc(work.title)}</h2>
+      <a href="#/works" class="btn btn-sm btn-secondary">&larr; All Works</a>
     </div>
     <form id="work-form">
-      <div class="form-grid">
-        <div class="form-group">
-          <label>Title</label>
-          <input type="text" name="title" value="${esc(work.title)}" required>
-        </div>
-        <div class="form-group">
-          <label>Year</label>
-          <input type="number" name="year" value="${work.year || ''}" required>
-        </div>
-        <div class="form-group">
-          <label>Medium</label>
-          <input type="text" name="medium" value="${esc(work.medium || '')}">
-        </div>
-        <div class="form-group">
-          <label>Dimensions</label>
-          <input type="text" name="dimensions" value="${esc(work.dimensions || '')}" placeholder="e.g. 24 x 36 in.">
-        </div>
-        <div class="form-group">
-          <label>Category</label>
-          <select name="category">
-            <option value="painting" ${work.category === 'painting' ? 'selected' : ''}>Painting</option>
-            <option value="drawing" ${work.category === 'drawing' ? 'selected' : ''}>Drawing &amp; Print</option>
-            <option value="new-media" ${work.category === 'new-media' ? 'selected' : ''}>New Media</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label class="toggle-group">
-            <input type="checkbox" name="featured" ${work.featured ? 'checked' : ''}>
-            Featured
-          </label>
-        </div>
-        <div class="form-group full-width">
-          <label>Image</label>
-          <input type="text" name="image" value="${esc(work.image || '')}" placeholder="/images/filename.png">
-          ${work.image ? `<img class="image-preview" src="${esc(work.image)}" alt="Preview">` : ''}
+      <div class="editor-layout">
+        <div class="editor-media">
+          <div class="media-preview" id="media-preview">
+            ${work.image
+              ? `<img src="${esc(work.image)}" alt="Preview">`
+              : '<span class="no-image">No image selected</span>'}
+          </div>
           <div class="image-upload-area" id="upload-area">
-            <p>Click or drag to upload image</p>
+            <p>Drop image here or click to upload</p>
             <input type="file" id="image-upload" accept="image/*">
           </div>
+          <div class="media-actions">
+            <button type="button" class="btn btn-sm btn-secondary" id="pick-image">Choose from Library</button>
+          </div>
         </div>
-        <div class="form-group">
-          <label>Video File URL</label>
-          <input type="text" name="video_file" value="${esc(work.video_file || '')}" placeholder="R2 video URL">
-          <div class="hint">Paste the full R2 video URL</div>
-        </div>
-        <div class="form-group">
-          <label>Video Embed URL</label>
-          <input type="text" name="video_embed" value="${esc(work.video_embed || '')}" placeholder="Vimeo or YouTube URL">
-        </div>
-        <div class="form-group full-width">
-          <label>Statement</label>
-          <textarea name="body" id="editor-body">${esc(work.body || '')}</textarea>
+
+        <div class="form-grid">
+          <div class="form-group full-width">
+            <label>Title</label>
+            <input type="text" name="title" value="${esc(work.title)}" required>
+          </div>
+          <div class="form-group">
+            <label>Year</label>
+            <input type="number" name="year" value="${work.year || ''}" required>
+          </div>
+          <div class="form-group">
+            <label>Category</label>
+            <select name="category">
+              ${CATEGORIES.map(c => `<option value="${c.key}" ${work.category === c.key ? 'selected' : ''}>${c.label}</option>`).join('')}
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Medium</label>
+            <input type="text" name="medium" value="${esc(work.medium || '')}" placeholder="e.g. Oil on panel">
+          </div>
+          <div class="form-group">
+            <label>Dimensions</label>
+            <input type="text" name="dimensions" value="${esc(work.dimensions || '')}" placeholder="e.g. 24 x 36 in.">
+          </div>
+          <div class="form-group full-width">
+            <label>Image Path</label>
+            <input type="text" name="image" value="${esc(work.image || '')}" placeholder="/images/filename.jpg">
+          </div>
+          <div class="form-group">
+            <label>Video File URL</label>
+            <input type="text" name="video_file" value="${esc(work.video_file || '')}" placeholder="R2 video URL">
+            <div class="hint">Direct .mp4 — plays inline in the gallery</div>
+          </div>
+          <div class="form-group">
+            <label>Video Embed URL</label>
+            <input type="text" name="video_embed" value="${esc(work.video_embed || '')}" placeholder="Vimeo or YouTube URL">
+          </div>
+          <div class="form-group">
+            <label class="toggle-group">
+              <input type="checkbox" name="featured" ${work.featured ? 'checked' : ''}>
+              Featured on home page
+            </label>
+          </div>
+          <div class="form-group full-width">
+            <label>Statement</label>
+            <textarea name="body" id="editor-body">${esc(work.body || '')}</textarea>
+          </div>
         </div>
       </div>
       <div class="form-actions">
@@ -338,33 +402,31 @@ async function renderWorkEditor(params) {
     </form>
   `;
 
-  // Initialize EasyMDE
-  currentEasyMDE = new EasyMDE({
+  if (window.EasyMDE) currentEasyMDE = new EasyMDE({
     element: $('#editor-body'),
     spellChecker: false,
     status: false,
-    minHeight: '200px',
+    minHeight: '180px',
     toolbar: ['bold', 'italic', 'heading', '|', 'quote', 'unordered-list', 'ordered-list', '|', 'link', 'image', '|', 'preview', 'guide'],
   });
 
-  // Image upload
-  setupImageUpload('upload-area', 'image-upload', (path) => {
+  const setImage = (path) => {
     $('input[name="image"]').value = path;
-    const existing = $('.image-preview');
-    if (existing) existing.src = path;
-    else {
-      const img = document.createElement('img');
-      img.className = 'image-preview';
-      img.src = path;
-      $('input[name="image"]').after(img);
-    }
-  });
+    $('#media-preview').innerHTML = path
+      ? `<img src="${esc(path)}" alt="Preview">`
+      : '<span class="no-image">No image selected</span>';
+  };
 
-  // Form submit
+  $('input[name="image"]').onchange = (e) => setImage(e.target.value.trim());
+
+  setupImageUpload('upload-area', 'image-upload', setImage);
+
+  $('#pick-image').onclick = () => openImagePicker(setImage);
+
   $('#work-form').onsubmit = async (e) => {
     e.preventDefault();
     const data = formData(e.target);
-    data.body = currentEasyMDE.value();
+    data.body = currentEasyMDE ? currentEasyMDE.value() : e.target.body.value;
     data.year = parseInt(data.year) || new Date().getFullYear();
     data.featured = !!e.target.featured.checked;
 
@@ -382,7 +444,6 @@ async function renderWorkEditor(params) {
     }
   };
 
-  // Delete
   const deleteBtn = $('#delete-btn');
   if (deleteBtn) {
     deleteBtn.onclick = async () => {
@@ -398,10 +459,115 @@ async function renderWorkEditor(params) {
   }
 }
 
+// --- Image Library ---
+async function renderImages() {
+  const content = $('#content');
+  content.innerHTML = '<div class="loading">Loading images</div>';
+
+  try {
+    const [images, works] = await Promise.all([api('/images'), api('/works')]);
+    const used = new Map();
+    works.forEach(w => { if (w.image) used.set(w.image, w.title); });
+
+    content.innerHTML = `
+      <div class="page-header">
+        <h2>Image Library</h2>
+        <span class="header-note">${images.length} files &middot; click to copy path</span>
+      </div>
+      <div class="works-toolbar">
+        <input type="search" class="search-input" id="lib-search" placeholder="Filter by filename&hellip;">
+        <span class="toolbar-hint" id="lib-filter-hint">
+          <label style="cursor:pointer"><input type="checkbox" id="lib-unused-only"> Show unused only</label>
+        </span>
+      </div>
+      <div class="image-lib-grid">
+        ${images.map(img => {
+          const name = img.split('/').pop();
+          const usedBy = used.get(img);
+          return `
+            <div class="lib-item" data-path="${esc(img)}" data-name="${esc(name.toLowerCase())}" data-used="${usedBy ? '1' : ''}"
+                 title="${usedBy ? `Used by: ${esc(usedBy)}` : 'Not used by any work'}">
+              <img src="${esc(img)}" alt="${esc(name)}" loading="lazy">
+              ${usedBy
+                ? `<span class="lib-badge">${esc(truncate(usedBy, 14))}</span>`
+                : '<span class="lib-badge unused">Unused</span>'}
+              <div class="lib-name">${esc(name)}</div>
+            </div>
+          `;
+        }).join('')}
+      </div>
+    `;
+
+    const applyFilter = () => {
+      const q = $('#lib-search').value.toLowerCase().trim();
+      const unusedOnly = $('#lib-unused-only').checked;
+      $$('.lib-item').forEach(item => {
+        const matches = (!q || item.dataset.name.includes(q)) && (!unusedOnly || !item.dataset.used);
+        item.style.display = matches ? '' : 'none';
+      });
+    };
+    $('#lib-search').oninput = applyFilter;
+    $('#lib-unused-only').onchange = applyFilter;
+
+    $$('.lib-item').forEach(item => {
+      item.onclick = async () => {
+        try {
+          await navigator.clipboard.writeText(item.dataset.path);
+          toast('Path copied');
+        } catch {
+          toast(item.dataset.path);
+        }
+      };
+    });
+  } catch (err) {
+    content.innerHTML = `<div class="empty-state"><p>Error: ${esc(err.message)}</p></div>`;
+  }
+}
+
+// Image picker modal (used from work editor)
+async function openImagePicker(onPick) {
+  let images = [];
+  try {
+    images = await api('/images');
+  } catch (err) {
+    toast(err.message, 'error');
+    return;
+  }
+
+  const overlay = document.createElement('div');
+  overlay.className = 'modal-overlay';
+  overlay.innerHTML = `
+    <div class="modal">
+      <div class="modal-head">
+        <h3>Image Library</h3>
+        <button class="modal-close" aria-label="Close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="image-lib-grid">
+          ${images.map(img => `
+            <div class="lib-item" data-path="${esc(img)}">
+              <img src="${esc(img)}" alt="" loading="lazy">
+              <div class="lib-name">${esc(img.split('/').pop())}</div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(overlay);
+
+  const close = () => overlay.remove();
+  overlay.onclick = (e) => { if (e.target === overlay) close(); };
+  $('.modal-close', overlay).onclick = close;
+  $$('.lib-item', overlay).forEach(item => {
+    item.onclick = () => { onPick(item.dataset.path); close(); };
+  });
+}
+
 // --- Posts ---
 async function renderPosts() {
   const content = $('#content');
-  content.innerHTML = '<div class="loading">Loading posts...</div>';
+  content.innerHTML = '<div class="loading">Loading posts</div>';
 
   try {
     const posts = await api('/posts');
@@ -413,11 +579,10 @@ async function renderPosts() {
       ${posts.length ? `
         <div class="posts-list">
           ${posts.map(p => `
-            <a href="#/posts/${p.slug}" class="post-row" style="text-decoration:none;color:inherit">
+            <a href="#/posts/${p.slug}" class="post-row">
               <span class="post-date">${formatDate(p.date)}</span>
               <span class="post-title">${esc(p.title)}</span>
               <span class="post-tags">${(p.tags || []).map(t => `<span class="tag">${esc(t)}</span>`).join('')}</span>
-              <span class="btn btn-sm btn-secondary">Edit</span>
             </a>
           `).join('')}
         </div>
@@ -440,7 +605,7 @@ async function renderPostEditor(params) {
   let post = { title: '', date: new Date().toISOString().slice(0, 10), tags: [], body: '' };
 
   if (!isNew) {
-    content.innerHTML = '<div class="loading">Loading...</div>';
+    content.innerHTML = '<div class="loading">Loading</div>';
     try {
       post = await api(`/posts/${params.slug}`);
     } catch {
@@ -453,8 +618,8 @@ async function renderPostEditor(params) {
 
   content.innerHTML = `
     <div class="page-header">
-      <h2>${isNew ? 'New Post' : `Edit: ${esc(post.title)}`}</h2>
-      <a href="#/posts" class="btn btn-secondary">Back to Posts</a>
+      <h2>${isNew ? 'New Post' : esc(post.title)}</h2>
+      <a href="#/posts" class="btn btn-sm btn-secondary">&larr; All Posts</a>
     </div>
     <form id="post-form">
       <div class="form-grid">
@@ -484,8 +649,7 @@ async function renderPostEditor(params) {
     </form>
   `;
 
-  // Initialize EasyMDE
-  currentEasyMDE = new EasyMDE({
+  if (window.EasyMDE) currentEasyMDE = new EasyMDE({
     element: $('#editor-body'),
     spellChecker: false,
     status: false,
@@ -493,11 +657,10 @@ async function renderPostEditor(params) {
     toolbar: ['bold', 'italic', 'heading', 'heading-2', 'heading-3', '|', 'quote', 'unordered-list', 'ordered-list', '|', 'link', 'image', 'horizontal-rule', '|', 'preview', 'side-by-side', 'fullscreen', '|', 'guide'],
   });
 
-  // Form submit
   $('#post-form').onsubmit = async (e) => {
     e.preventDefault();
     const data = formData(e.target);
-    data.body = currentEasyMDE.value();
+    data.body = currentEasyMDE ? currentEasyMDE.value() : e.target.body.value;
     data.tags = data.tags ? data.tags.split(',').map(t => t.trim()).filter(Boolean) : [];
 
     try {
@@ -514,7 +677,6 @@ async function renderPostEditor(params) {
     }
   };
 
-  // Delete
   const deleteBtn = $('#delete-btn');
   if (deleteBtn) {
     deleteBtn.onclick = async () => {
@@ -533,7 +695,7 @@ async function renderPostEditor(params) {
 // --- About ---
 async function renderAbout() {
   const content = $('#content');
-  content.innerHTML = '<div class="loading">Loading...</div>';
+  content.innerHTML = '<div class="loading">Loading</div>';
 
   try {
     const about = await api('/about');
@@ -541,6 +703,7 @@ async function renderAbout() {
     content.innerHTML = `
       <div class="page-header">
         <h2>About Page</h2>
+        <span class="header-note">Bio, statement, CV</span>
       </div>
       <form id="about-form">
         <div class="about-section">
@@ -585,7 +748,6 @@ async function renderAbout() {
       </form>
     `;
 
-    // Add paragraph
     $('#add-statement').onclick = () => {
       const container = $('#statement-entries');
       const idx = container.children.length;
@@ -599,7 +761,6 @@ async function renderAbout() {
       container.appendChild(div);
     };
 
-    // Add education
     $('#add-education').onclick = () => {
       const container = $('#education-entries');
       const idx = container.children.length;
@@ -615,7 +776,6 @@ async function renderAbout() {
       container.appendChild(div);
     };
 
-    // Add exhibition
     $('#add-exhibition').onclick = () => {
       const container = $('#exhibition-entries');
       const idx = container.children.length;
@@ -631,7 +791,6 @@ async function renderAbout() {
       container.appendChild(div);
     };
 
-    // Save
     $('#about-form').onsubmit = async (e) => {
       e.preventDefault();
 
@@ -642,13 +801,11 @@ async function renderAbout() {
         exhibitions: [],
       };
 
-      // Collect statement paragraphs
       $$('#statement-entries textarea').forEach(ta => {
         const val = ta.value.trim();
         if (val) data.artist_statement.push(val);
       });
 
-      // Collect education
       $$('#education-entries .entry-row').forEach(row => {
         const inputs = $$('input', row);
         const entry = {
@@ -660,7 +817,6 @@ async function renderAbout() {
         if (entry.degree || entry.school) data.education.push(entry);
       });
 
-      // Collect exhibitions
       $$('#exhibition-entries .entry-row').forEach(row => {
         const inputs = $$('input', row);
         const entry = {
@@ -715,6 +871,11 @@ function esc(str) {
   return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
 
+function truncate(str, len) {
+  if (!str) return '';
+  return str.length <= len ? str : str.slice(0, len - 1) + '…';
+}
+
 function formatDate(dateStr) {
   if (!dateStr) return '';
   const d = new Date(dateStr);
@@ -736,11 +897,11 @@ function setupImageUpload(areaId, inputId, onUpload) {
 
   area.onclick = () => input.click();
 
-  area.ondragover = (e) => { e.preventDefault(); area.style.borderColor = 'var(--accent)'; };
-  area.ondragleave = () => { area.style.borderColor = ''; };
+  area.ondragover = (e) => { e.preventDefault(); area.classList.add('dragover'); };
+  area.ondragleave = () => { area.classList.remove('dragover'); };
   area.ondrop = async (e) => {
     e.preventDefault();
-    area.style.borderColor = '';
+    area.classList.remove('dragover');
     const file = e.dataTransfer.files[0];
     if (file) await uploadFile(file, onUpload);
   };
