@@ -7,21 +7,9 @@ activeNav: contact
 <div class="contact-content" data-reveal>
   <p class="contact-intro">For inquiries about available work, exhibitions, or studio visits, please use the form below or reach out directly.</p>
 
-  <form action="https://formsubmit.co/zauster.art@outlook.com" method="POST">
-    <!-- CC second email -->
-    <input type="hidden" name="_cc" value="zach.miller.art@gmail.com">
-    <!-- Redirect back to your site after submission -->
-    <input type="hidden" name="_next" value="https://zach-miller-studio.com/contact/thanks/">
-    <!-- Disable captcha page (uses honeypot instead) -->
-    <input type="hidden" name="_captcha" value="false">
+  <form action="/api/contact" method="POST">
     <!-- Honeypot spam filter -->
-    <input type="text" name="_honey" style="display:none">
-    <!-- Discard submissions containing known spam phrases (comma-separated) -->
-    <input type="hidden" name="_blacklist" value="I would like more information. Please contact me by email">
-    <!-- Custom subject line prefix -->
-    <input type="hidden" name="_subject" value="New Studio Inquiry">
-    <!-- Reply-to sender's email -->
-    <input type="hidden" name="_template" value="table">
+    <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
 
     <div class="form-group">
       <label class="form-label" for="name">Name</label>
